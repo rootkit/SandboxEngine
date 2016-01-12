@@ -8,11 +8,15 @@ class BuildMatrixObject
         BuildMatrixObject(std::string prefabSet, Leadwerks::Vec3* buildPosition,Leadwerks::Vec3* buildSize, Leadwerks::Vec3* blockSize);
         virtual ~BuildMatrixObject();
         void Update();
-        void SetPosition(float x,float y, float z);
+        void SetPosition(Leadwerks::Vec3* position);
     protected:
     private:
-        Leadwerks::Vec3* _position;
+    	bool _attributeChange =	false;
+        Leadwerks::Vec3* _position;        
+    	Leadwerks::Vec3* _buildSize;
+    	Leadwerks::Vec3* _blockSize;
         std::vector<std::vector<Leadwerks::Entity*>*> _grid;
+        void _ProcessGrid();
 };
 
 #endif // BUILDMATRIXOBJECT_H

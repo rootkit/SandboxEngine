@@ -1,0 +1,3 @@
+texture0=.\woodsmooth.tex
+texture1=.\woodsmooth_dot3.tex
+shader="Shaders/Model/diffuse+normal.shader"

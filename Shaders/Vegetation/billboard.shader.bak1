@@ -1,0 +1,551 @@
+SHADER version 1
+@OpenGL2.Vertex
+#version 400
+#define MAX_INSTANCES 4096
+
+//Uniforms
+uniform vec4 materialcolordiffuse;
+uniform mat4 projectioncameramatrix;
+uniform mat4 camerainversematrix;
+//uniform instancematrices { int matrix[MAX_INSTANCES];} entity;
+//uniform bonematrices { int matrix[MAX_INSTANCES];} bone;
+uniform vec4 clipplane0 = vec4(0.0);
+uniform sampler2D texture5;
+uniform vec2 InstanceOffset;
+uniform float TerrainSize;
+uniform float CellResolution;
+uniform float Density;
+uniform vec3 cameraposition;
+uniform usamplerBuffer texture4;
+
+//Attributes
+in vec3 vertex_position;
+in vec4 vertex_color;
+in vec2 vertex_texcoords0;
+in vec3 vertex_normal;
+in vec3 vertex_binormal;
+in vec3 vertex_tangent;
+
+//Outputs
+out vec4 ex_color;
+out vec2 ex_texcoords0;
+out float ex_selectionstate;
+out vec3 ex_VertexCameraPosition;
+out vec3 ex_normal;
+out vec3 ex_tangent;
+out vec3 ex_binormal;
+out float clipdistance0;
+out mat4 ex_entitymatrix;
+
+float rand(vec2 co)
+{
+	return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+mat4 GetInstanceMatrix(in uint id)
+{
+	float x = floor(id/CellResolution);
+	float z = id-x*CellResolution;
+	//x += InstanceOffset.x * CellResolution;
+	//z += InstanceOffset.y * CellResolution;
+	mat4 mat=mat4(1.0);
+	vec2 texcoord;
+	
+	#define variationmapresolution 16.0
+	texcoord = vec2(0.5,0.5);//0.5/variationmapresolution);
+	
+	mat[0][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 0.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[0][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 1.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[0][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 2.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[0][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 3.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[1][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 4.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[1][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 5.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[1][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 6.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[1][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 7.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[2][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 8.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[2][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 9.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[2][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 10.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[2][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 11.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[3][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 12.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[3][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 13.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[3][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 14.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[3][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 15.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[3][0] += x * Density - TerrainSize * 0.5;
+	mat[3][2] += z * Density - TerrainSize * 0.5;
+	
+	return mat;
+}
+
+void main()
+{
+	//mat4 entitymatrix = entity.matrix[gl_InstanceID];
+	
+	mat4 entitymatrix_= mat4(1.0);//entitymatrix;
+	entitymatrix_[0][3]=0.0;
+	entitymatrix_[1][3]=0.0;
+	entitymatrix_[2][3]=0.0;
+	entitymatrix_[3][3]=1.0;
+	
+	//entitymatrix_[0][0] = 1.0f;
+	
+	//----------------------------------------------
+	//Procedurally generated position
+	//----------------------------------------------
+	/*
+	#define ROWSIZE 100
+	#define SEED 1
+	#define randomness 3.0
+	#define density 3.0
+	#define scalevariation 1
+	
+	int id = gl_InstanceID;
+	int x = id/ROWSIZE;
+	int z = id - x * ROWSIZE;
+	
+	float angle = rand(vec2(SEED-z,SEED+x))*6.2831853;
+	
+	//Random rotation
+	mat4 rotmat = mat4(1.0);
+	rotmat[0][0] = sin(angle);
+	rotmat[0][2] = cos(angle);
+	rotmat[2][0] = -sin(angle+1.570796325);
+	rotmat[2][2] = -cos(angle+1.570796325);
+	//entitymatrix_=rotmat*entitymatrix_;
+	
+	float scale = rand(vec2(SEED+z,SEED-x));
+	float sgn = sign(scale-0.5);
+	scale = (abs(scale-0.5));
+	scale *= scale;
+	scale = (scale *sgn + 0.5);
+	
+	scale = scale * scalevariation + 1.0-scalevariation/2.0;
+	entitymatrix_[0] *= scale;
+	entitymatrix_[1] *= scale;
+	entitymatrix_[2] *= scale;
+	
+	entitymatrix_[3][0] = x*density + rand(vec2(SEED+z,SEED-x))*randomness;
+	entitymatrix_[3][2] = z*density + rand(vec2(SEED+x,SEED-z))*randomness;
+	*/
+	
+	uint id = texelFetch(texture4, gl_InstanceID).r;
+	//id = bone.matrix[gl_InstanceID];
+	
+	entitymatrix_ = GetInstanceMatrix( id );
+	//entitymatrix_[3][1] += texelFetch(texture4, gl_InstanceID).r / 100000.0;
+	//----------------------------------------------
+	//
+	//----------------------------------------------
+	
+	ex_entitymatrix = entitymatrix_;
+	
+	vec4 modelvertexposition = entitymatrix_ * vec4(vertex_position,1.0);
+	
+	//Clip planes
+	if (length(clipplane0.xyz)>0.0001)
+	{
+		clipdistance0 = modelvertexposition.x*clipplane0.x + modelvertexposition.y*clipplane0.y + modelvertexposition.z*clipplane0.z + clipplane0.w;
+	}
+	else
+	{
+		clipdistance0 = 0.0;
+	}	
+	
+	ex_VertexCameraPosition = vec3(camerainversematrix * modelvertexposition);
+	gl_Position = projectioncameramatrix * modelvertexposition;
+	
+	//gl_Position = vec4(vertex_position,1.0);
+	
+	mat3 nmat = mat3(camerainversematrix);//[0].xyz,camerainversematrix[1].xyz,camerainversematrix[2].xyz);//39
+	nmat = nmat * mat3(entitymatrix_[0].xyz,entitymatrix_[1].xyz,entitymatrix_[2].xyz);//40
+	ex_normal = normalize(nmat * vertex_normal);
+	ex_tangent = normalize(nmat * vertex_tangent);
+	ex_binormal = normalize(nmat * vertex_binormal);
+	
+	ex_texcoords0 = vertex_texcoords0;
+	
+	ex_color = vec4(entitymatrix_[0][3],entitymatrix_[1][3],entitymatrix_[2][3],entitymatrix_[3][3]);
+	
+	//If an object is selected, 10 is subtracted from the alpha color.
+	//This is a bit of a hack that packs a per-object boolean into the alpha value.
+	ex_selectionstate = 0.0;
+	if (ex_color.a<-5.0)
+	{
+		ex_color.a += 10.0;
+		ex_selectionstate = 1.0;
+	}
+	
+	ex_color *= vec4(1.0-vertex_color.r,1.0-vertex_color.g,1.0-vertex_color.b,vertex_color.a) * materialcolordiffuse;
+}
+
+
+//bad geom shader
+/*
+
+#version 400
+
+#define MAX_INSTANCES 81
+#define MAX_VERTICES 243
+#define MAX_ROWS 1
+
+uniform mat4 projectioncameramatrix;
+uniform mat4 camerainversematrix;
+
+layout(triangles) in;
+layout(triangle_strip,max_vertices=MAX_VERTICES) out;
+
+in mat4 ex_entitymatrix[3];
+in vec4 ex_gcolor[3];
+in vec2 ex_texcoords0[3];
+in float ex_selectionstate[3];
+in vec3 ex_VertexCameraPosition[3];
+in vec3 ex_gnormal[3];
+in vec3 ex_tangent[3];
+in vec3 ex_binormal[3];
+in float clipdistance0[3];
+
+out vec3 ex_normal;
+//out vec4 ex_color;
+out vec3 ex_jtangent;
+out vec3 ex_jbinormal;
+out vec3 ex_jjtangent;
+
+void main()
+{
+	//mat3 nmat = mat3(camerainversematrix);//[0].xyz,camerainversematrix[1].xyz,camerainversematrix[2].xyz);//39
+	//nmat = nmat * mat3(ex_entitymatrix[0][0].xyz,ex_entitymatrix[0][1].xyz,ex_entitymatrix[0][2].xyz);//40
+	
+	for(int x=0; x<MAX_ROWS; x++)
+	{
+		for(int y=0; y<MAX_ROWS; y++)
+		{
+			for(int i=0; i<3; i++)
+			{
+				mat4 m = ex_entitymatrix[i];
+				m[3][0] += x * 4.0f;
+				m[3][2] += y * 4.0f;
+				vec4 modelvertexposition = m * gl_in[i].gl_Position;
+				gl_Position = projectioncameramatrix * modelvertexposition;
+				ex_normal = ex_gnormal[i];
+				//ex_color = ex_gcolor[i];
+				ex_jjtangent = ex_gnormal[i];
+				ex_jtangent = ex_gnormal[i];
+				ex_jbinormal = ex_gnormal[i];
+				EmitVertex();
+			}
+			EndPrimitive();
+		}
+	}
+}
+*/
+@OpenGLES2.Vertex
+
+@OpenGLES2.Fragment
+
+@OpenGL4.Vertex
+#version 400
+#define MAX_INSTANCES 4096
+
+//Uniforms
+uniform vec4 materialcolordiffuse;
+uniform mat4 projectioncameramatrix;
+uniform mat4 camerainversematrix;
+//uniform instancematrices { int matrix[MAX_INSTANCES];} entity;
+//uniform bonematrices { int matrix[MAX_INSTANCES];} bone;
+uniform vec4 clipplane0 = vec4(0.0);
+uniform sampler2D texture5;
+uniform vec2 InstanceOffset;
+uniform float TerrainSize;
+uniform float CellResolution;
+uniform float Density;
+uniform vec3 cameraposition;
+uniform usamplerBuffer texture4;
+
+//Attributes
+in vec3 vertex_position;
+in vec4 vertex_color;
+in vec2 vertex_texcoords0;
+in vec3 vertex_normal;
+in vec3 vertex_binormal;
+in vec3 vertex_tangent;
+
+//Outputs
+out vec4 ex_color;
+out vec2 ex_texcoords0;
+out float ex_selectionstate;
+out vec3 ex_VertexCameraPosition;
+out vec3 ex_normal;
+out vec3 ex_tangent;
+out vec3 ex_binormal;
+out float clipdistance0;
+out mat4 ex_entitymatrix;
+
+float rand(vec2 co)
+{
+	return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+mat4 GetInstanceMatrix(in uint id)
+{
+	float x = floor(id/CellResolution);
+	float z = id-x*CellResolution;
+	//x += InstanceOffset.x * CellResolution;
+	//z += InstanceOffset.y * CellResolution;
+	mat4 mat=mat4(1.0);
+	vec2 texcoord;
+	
+	#define variationmapresolution 16.0
+	texcoord = vec2(0.5,0.5);//0.5/variationmapresolution);
+	
+	mat[0][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 0.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[0][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 1.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[0][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 2.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[0][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 3.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[1][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 4.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[1][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 5.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[1][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 6.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[1][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 7.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[2][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 8.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[2][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 9.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[2][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 10.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[2][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 11.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[3][0]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 12.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[3][1]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 13.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[3][2]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 14.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	mat[3][3]=texture(texture5,vec2((float(x)*16.0 + texcoord.x + 15.0) / variationmapresolution / 16.0,texcoord.y + z / variationmapresolution)).r;
+	
+	mat[3][0] += x * Density - TerrainSize * 0.5;
+	mat[3][2] += z * Density - TerrainSize * 0.5;
+	
+	return mat;
+}
+
+void main()
+{
+	//mat4 entitymatrix = entity.matrix[gl_InstanceID];
+	
+	mat4 entitymatrix_= mat4(1.0);//entitymatrix;
+	entitymatrix_[0][3]=0.0;
+	entitymatrix_[1][3]=0.0;
+	entitymatrix_[2][3]=0.0;
+	entitymatrix_[3][3]=1.0;
+	
+	//entitymatrix_[0][0] = 1.0f;
+	
+	//----------------------------------------------
+	//Procedurally generated position
+	//----------------------------------------------
+	/*
+	#define ROWSIZE 100
+	#define SEED 1
+	#define randomness 3.0
+	#define density 3.0
+	#define scalevariation 1
+	
+	int id = gl_InstanceID;
+	int x = id/ROWSIZE;
+	int z = id - x * ROWSIZE;
+	
+	float angle = rand(vec2(SEED-z,SEED+x))*6.2831853;
+	
+	//Random rotation
+	mat4 rotmat = mat4(1.0);
+	rotmat[0][0] = sin(angle);
+	rotmat[0][2] = cos(angle);
+	rotmat[2][0] = -sin(angle+1.570796325);
+	rotmat[2][2] = -cos(angle+1.570796325);
+	//entitymatrix_=rotmat*entitymatrix_;
+	
+	float scale = rand(vec2(SEED+z,SEED-x));
+	float sgn = sign(scale-0.5);
+	scale = (abs(scale-0.5));
+	scale *= scale;
+	scale = (scale *sgn + 0.5);
+	
+	scale = scale * scalevariation + 1.0-scalevariation/2.0;
+	entitymatrix_[0] *= scale;
+	entitymatrix_[1] *= scale;
+	entitymatrix_[2] *= scale;
+	
+	entitymatrix_[3][0] = x*density + rand(vec2(SEED+z,SEED-x))*randomness;
+	entitymatrix_[3][2] = z*density + rand(vec2(SEED+x,SEED-z))*randomness;
+	*/
+	
+	uint id = texelFetch(texture4, gl_InstanceID).r;
+	//id = bone.matrix[gl_InstanceID];
+	
+	entitymatrix_ = GetInstanceMatrix( id );
+	//entitymatrix_[3][1] += texelFetch(texture4, gl_InstanceID).r / 100000.0;
+	//----------------------------------------------
+	//
+	//----------------------------------------------
+	
+	ex_entitymatrix = entitymatrix_;
+	
+	vec4 modelvertexposition = entitymatrix_ * vec4(vertex_position,1.0);
+	
+	//Clip planes
+	if (length(clipplane0.xyz)>0.0001)
+	{
+		clipdistance0 = modelvertexposition.x*clipplane0.x + modelvertexposition.y*clipplane0.y + modelvertexposition.z*clipplane0.z + clipplane0.w;
+	}
+	else
+	{
+		clipdistance0 = 0.0;
+	}	
+	
+	ex_VertexCameraPosition = vec3(camerainversematrix * modelvertexposition);
+	gl_Position = projectioncameramatrix * modelvertexposition;
+	
+	//gl_Position = vec4(vertex_position,1.0);
+	
+	mat3 nmat = mat3(camerainversematrix);//[0].xyz,camerainversematrix[1].xyz,camerainversematrix[2].xyz);//39
+	nmat = nmat * mat3(entitymatrix_[0].xyz,entitymatrix_[1].xyz,entitymatrix_[2].xyz);//40
+	ex_normal = normalize(nmat * vertex_normal);
+	ex_tangent = normalize(nmat * vertex_tangent);
+	ex_binormal = normalize(nmat * vertex_binormal);
+	
+	ex_texcoords0 = vertex_texcoords0;
+	
+	ex_color = vec4(entitymatrix_[0][3],entitymatrix_[1][3],entitymatrix_[2][3],entitymatrix_[3][3]);
+	
+	//If an object is selected, 10 is subtracted from the alpha color.
+	//This is a bit of a hack that packs a per-object boolean into the alpha value.
+	ex_selectionstate = 0.0;
+	if (ex_color.a<-5.0)
+	{
+		ex_color.a += 10.0;
+		ex_selectionstate = 1.0;
+	}
+	
+	ex_color *= vec4(1.0-vertex_color.r,1.0-vertex_color.g,1.0-vertex_color.b,vertex_color.a) * materialcolordiffuse;
+}
+
+
+//bad geom shader
+/*
+
+#version 400
+
+#define MAX_INSTANCES 81
+#define MAX_VERTICES 243
+#define MAX_ROWS 1
+
+uniform mat4 projectioncameramatrix;
+uniform mat4 camerainversematrix;
+
+layout(triangles) in;
+layout(triangle_strip,max_vertices=MAX_VERTICES) out;
+
+in mat4 ex_entitymatrix[3];
+in vec4 ex_gcolor[3];
+in vec2 ex_texcoords0[3];
+in float ex_selectionstate[3];
+in vec3 ex_VertexCameraPosition[3];
+in vec3 ex_gnormal[3];
+in vec3 ex_tangent[3];
+in vec3 ex_binormal[3];
+in float clipdistance0[3];
+
+out vec3 ex_normal;
+//out vec4 ex_color;
+out vec3 ex_jtangent;
+out vec3 ex_jbinormal;
+out vec3 ex_jjtangent;
+
+void main()
+{
+	//mat3 nmat = mat3(camerainversematrix);//[0].xyz,camerainversematrix[1].xyz,camerainversematrix[2].xyz);//39
+	//nmat = nmat * mat3(ex_entitymatrix[0][0].xyz,ex_entitymatrix[0][1].xyz,ex_entitymatrix[0][2].xyz);//40
+	
+	for(int x=0; x<MAX_ROWS; x++)
+	{
+		for(int y=0; y<MAX_ROWS; y++)
+		{
+			for(int i=0; i<3; i++)
+			{
+				mat4 m = ex_entitymatrix[i];
+				m[3][0] += x * 4.0f;
+				m[3][2] += y * 4.0f;
+				vec4 modelvertexposition = m * gl_in[i].gl_Position;
+				gl_Position = projectioncameramatrix * modelvertexposition;
+				ex_normal = ex_gnormal[i];
+				//ex_color = ex_gcolor[i];
+				ex_jjtangent = ex_gnormal[i];
+				ex_jtangent = ex_gnormal[i];
+				ex_jbinormal = ex_gnormal[i];
+				EmitVertex();
+			}
+			EndPrimitive();
+		}
+	}
+}
+*/
+@OpenGL4.Fragment
+#version 400
+#define BFN_ENABLED 1
+
+//Uniforms
+uniform sampler2D texture0;//diffuse map
+uniform samplerCube texture15;//BFN map
+uniform vec4 materialcolorspecular;
+uniform vec4 lighting_ambient;
+
+//Lighting
+uniform vec3 lightdirection[4];
+uniform vec4 lightcolor[4];
+uniform vec4 lightposition[4];
+uniform float lightrange[4];
+uniform vec3 lightingcenter[4];
+uniform vec2 lightingconeanglescos[4];
+uniform vec4 lightspecular[4];
+uniform vec4 clipplane0 = vec4(0.0);
+
+//Inputs
+in vec2 ex_texcoords0;
+in vec4 ex_color;
+in float ex_selectionstate;
+in vec3 ex_VertexCameraPosition;
+in vec3 ex_normal;
+in vec3 ex_tangent;
+in vec3 ex_binormal;
+in float clipdistance0;
+
+out vec4 fragData0;
+out vec4 fragData1;
+out vec4 fragData2;
+out vec4 fragData3;
+
+void main(void)
+{
+	//Clip plane discard
+	if (clipdistance0>0.0) discard;
+	
+	vec4 outcolor = vec4(1.0,0.0,0.0,0.0);//ex_color;
+	vec4 color_specular = materialcolorspecular;
+	vec3 normal = ex_normal;
+
+	//Modulate blend with diffuse map
+	outcolor *= texture(texture0,ex_texcoords0);
+	
+	//Blend with selection color if selected
+	fragData0 = outcolor;// * (1.0-ex_selectionstate) + ex_selectionstate * (outcolor*0.5+vec4(0.5,0.0,0.0,0.0));
+	
+#if BFN_ENABLED==1
+	//Best-fit normals
+	fragData1 = texture(texture15,normalize(vec3(normal.x,-normal.y,normal.z)));	
+#else
+	//Low-res normals
+	fragData1 = vec4(normalize(normal)*0.5+0.5,1.0);
+#endif
+	fragData1.a = materialcolorspecular.r * 0.299 + materialcolorspecular.g * 0.587 + materialcolorspecular.b * 0.114;
+	int materialflags=1;
+	if (ex_selectionstate>0.0) materialflags += 2;
+	fragData2 = vec4(0.0,0.0,0.0,materialflags/255.0);
+}

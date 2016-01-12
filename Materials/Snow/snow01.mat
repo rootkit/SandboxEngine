@@ -1,0 +1,3 @@
+texture0=.\snow01.tex
+texture1=.\snow01_dot3.tex
+shader="Shaders/Model/diffuse+normal.shader"

@@ -1,0 +1,4 @@
+texture0=.\pipes_metal_diff.tex
+texture1=.\pipes_metal_dot3.tex
+texture2=.\pipes_metal_spec.tex
+shader="Shaders/Model/diffuse+normal+specular.shader"

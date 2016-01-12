@@ -1,0 +1,4 @@
+texture0=.\lightbox_diff.tex
+texture1=.\lightbox_dot3.tex
+texture2=.\lightbox_spec.tex
+shader="Shaders/Model/diffuse+normal+specular.shader"

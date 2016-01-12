@@ -1,0 +1,3 @@
+texture0=.\dirt01.tex
+texture1=.\dirt01_dot3.tex
+shader="Shaders/Model/diffuse+normal.shader"

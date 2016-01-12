@@ -1,0 +1,15 @@
+//Leadwerks Material File
+
+blendmode=4
+castshadows=0
+zsort=0
+cullbackfaces=1
+depthtest=1
+depthmask=1
+diffuse=0.847058833,0.129411772,0.129411772,1.00000000
+specular=1.00000000,1.00000000,1.00000000,0.501960814
+alwaysuseshader=0
+drawmode=-1
+
+shader="shaders\model\diffuse.shader"
+texture0=".\cagelight_glass.tex"

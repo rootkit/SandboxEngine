@@ -59,15 +59,9 @@ void Scene::Update()
 
 }
 
-BuildMatrixObject* Scene::AddBuildMatrixObject(std::string prefabSet, float buildSizeX, float buildSizeY, float buildSizeZ,float blockSizeX, float blockSizeY, float blockSizeZ)
+BuildMatrixObject* Scene::AddBuildMatrixObject(std::string prefabSet, Leadwerks::Vec3* buildPosition,Leadwerks::Vec3* buildSize, Leadwerks::Vec3* blockSize)
 {
-    return new BuildMatrixObject(prefabSet,
-                                buildSizeX,
-                                buildSizeY,
-                                buildSizeZ,
-                                blockSizeX,
-                                blockSizeY,
-                                blockSizeZ);
+    return new BuildMatrixObject(prefabSet,buildPosition,buildSize,blockSize);
 }
 
 

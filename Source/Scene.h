@@ -15,7 +15,7 @@ class Scene
         Scene(Leadwerks::Window* window,Context* context,World* world,Camera* camera);
         void Update();
 
-        BuildMatrixObject* AddBuildMatrixObject(std::string prefabSet, float buildSizeX, float buildSizeY, float buildSizeZ,float blockSizeX, float blockSizeY, float blockSizeZ);
+        BuildMatrixObject* AddBuildMatrixObject(std::string prefabSet, Leadwerks::Vec3* buildPosition,Leadwerks::Vec3* buildSize, Leadwerks::Vec3* blockSize);
 
         virtual ~Scene();
     protected:

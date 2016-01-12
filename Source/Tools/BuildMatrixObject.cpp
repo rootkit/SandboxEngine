@@ -1,20 +1,22 @@
 #define _GLIBCXX_USE_CXX11_ABI 0
 #include "BuildMatrixObject.h"
 
-BuildMatrixObject::BuildMatrixObject(std::string prefabSet, float buildSizeX, float buildSizeY, float buildSizeZ,float blockSizeX , float blockSizeY, float blockSizeZ)
+BuildMatrixObject::BuildMatrixObject(std::string prefabSet, Leadwerks::Vec3* buildPosition,Leadwerks::Vec3* buildSize, Leadwerks::Vec3* blockSize)
 {
+    _position = new Leadwerks::Vec3();
+
     std::vector<Leadwerks::Entity*> row;
 
-    for (int i = 0; i < buildSizeY; ++i)
+    for (int i = 0; i < buildSize->y; ++i)
     {
         row.clear();
 
-        for(int j = 0; j < buildSizeZ; ++j)
+        for(int j = 0; j < buildSize->z; ++j)
         {
-            for (int k = 0; k < buildSizeX; ++k)
+            for (int k = 0; k < buildSize->x; ++k)
             {
-                Leadwerks::Entity* block = Leadwerks::Model::Box(blockSizeX,blockSizeY,blockSizeZ);
-                block->SetPosition((buildSizeX * k) / 3,(buildSizeY * i) / 2,(buildSizeZ * j) / 3);
+                Leadwerks::Entity* block = Leadwerks::Model::Box(blockSize->x,blockSize->y,blockSize->z);
+                block->SetPosition((blockSize->x * k),(blockSize->y * i),(blockSize->z * j));
 
                 row.push_back(block);
             }
@@ -31,6 +33,11 @@ BuildMatrixObject::~BuildMatrixObject()
 }
 
 void BuildMatrixObject::Update()
+{
+
+}
+
+void BuildMatrixObject::SetPosition(float x,float y, float z)
 {
 
 }

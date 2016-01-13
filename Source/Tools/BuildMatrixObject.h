@@ -12,11 +12,12 @@ class BuildMatrixObject
     protected:
     private:
     	bool _attributeChange =	false;
-        Leadwerks::Vec3* _position;        
+        Leadwerks::Vec3* _position;
     	Leadwerks::Vec3* _buildSize;
     	Leadwerks::Vec3* _blockSize;
         std::vector<std::vector<Leadwerks::Entity*>*> _grid;
         void _ProcessGrid();
+        void _CreateGrid();
 };
 
 #endif // BUILDMATRIXOBJECT_H

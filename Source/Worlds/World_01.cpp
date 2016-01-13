@@ -9,7 +9,7 @@ World_01::World_01(Leadwerks::Window* window,Context* context,World* world,Camer
 
     //_floorObject = new FloorObject(this);
 
-    _buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(0,0,0),new Leadwerks::Vec3(3,2,3),new Leadwerks::Vec3(1,1,1));
+    _buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(1,1,1),new Leadwerks::Vec3(3,2,3),new Leadwerks::Vec3(1,1,1));
 }
 
 World_01::~World_01()
@@ -20,4 +20,5 @@ World_01::~World_01()
 void World_01::Update()
 {
     Scene::Update();
+    _buildMatrixObject->Update();
 }

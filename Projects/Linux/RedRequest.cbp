@@ -113,6 +113,8 @@
 		<Unit filename="../../Source/App.h" />
 		<Unit filename="../../Source/Scene.cpp" />
 		<Unit filename="../../Source/Scene.h" />
+		<Unit filename="../../Source/Tools/BuildMatrixBlockObject.cpp" />
+		<Unit filename="../../Source/Tools/BuildMatrixBlockObject.h" />
 		<Unit filename="../../Source/Tools/BuildMatrixObject.cpp" />
 		<Unit filename="../../Source/Tools/BuildMatrixObject.h" />
 		<Unit filename="../../Source/Tools/FloorObject.cpp" />

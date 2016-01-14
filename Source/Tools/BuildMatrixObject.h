@@ -1,6 +1,7 @@
 #ifndef BUILDMATRIXOBJECT_H
 #define BUILDMATRIXOBJECT_H
 #include "Leadwerks.h"
+#include "../../Source/Tools/BuildMatrixBlockObject.h"
 
 class BuildMatrixObject
 {
@@ -15,7 +16,7 @@ class BuildMatrixObject
         Leadwerks::Vec3* _position;
     	Leadwerks::Vec3* _buildSize;
     	Leadwerks::Vec3* _blockSize;
-        std::vector<std::vector<Leadwerks::Entity*>*> _grid;
+        std::vector<std::vector<BuildMatrixBlockObject*>*> _grid;
         void _ProcessGrid();
         void _CreateGrid();
 };

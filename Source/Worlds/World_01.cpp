@@ -9,7 +9,7 @@ World_01::World_01(Leadwerks::Window* window,Context* context,World* world,Camer
 
     //_floorObject = new FloorObject(this);
 
-    _buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(1,1,1),new Leadwerks::Vec3(3,2,3),new Leadwerks::Vec3(1,1,1));
+    _buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(3.8399,3.8299,3.8399));
 }
 
 World_01::~World_01()

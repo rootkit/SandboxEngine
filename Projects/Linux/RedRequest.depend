@@ -1374,7 +1374,7 @@
 	"Leadwerks.h"
 	"Leadwerks.h"
 
-1452137709 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.cpp
+1453419498 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.cpp
 	"App.h"
 
 1452060276 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.h
@@ -1385,17 +1385,18 @@
 1452137704 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/main.cpp
 	"App.h"
 
-1452593399 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.cpp
+1453421026 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.cpp
 	"Scene.h"
 
-1452593152 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.h
+1453419307 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.h
 	"Leadwerks.h"
 	"Tools/BuildMatrixObject.h"
+	"./Player.h"
 
-1452723435 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Worlds/World_01.cpp
+1453419458 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Worlds/World_01.cpp
 	"World_01.h"
 
-1452579902 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Worlds/World_01.h
+1453419440 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Worlds/World_01.h
 	"Leadwerks.h"
 	"../../Source/Scene.h"
 	"../../Source/Tools/FloorObject.h"
@@ -1425,4 +1426,11 @@
 
 1452722418 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Tools/BuildMatrixBlockObject.cpp
 	"BuildMatrixBlockObject.h"
+
+1454641314 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Player.h
+	"Leadwerks.h"
+	"Scene.h"
+
+1454640492 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Player.cpp
+	"Player.h"
 

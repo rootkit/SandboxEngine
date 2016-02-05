@@ -20,6 +20,7 @@
 					<Add directory="Source/Worlds" />
 					<Add directory="Source/Tools" />
 					<Add directory="Source/Tools/" />
+					<Add directory="Source/" />
 				</Compiler>
 				<Linker>
 					<Add library="$(LeadwerksPath)/Library/Linux/Debug/Leadwerks.a" />
@@ -45,6 +46,7 @@
 					<Add directory="Source/Worlds" />
 					<Add directory="Source/Tools" />
 					<Add directory="Source/Tools/" />
+					<Add directory="Source/" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -111,6 +113,8 @@
 		</Compiler>
 		<Unit filename="../../Source/App.cpp" />
 		<Unit filename="../../Source/App.h" />
+		<Unit filename="../../Source/Player.cpp" />
+		<Unit filename="../../Source/Player.h" />
 		<Unit filename="../../Source/Scene.cpp" />
 		<Unit filename="../../Source/Scene.h" />
 		<Unit filename="../../Source/Tools/BuildMatrixBlockObject.cpp" />

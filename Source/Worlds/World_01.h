@@ -13,6 +13,7 @@ class World_01 : public Scene
         World_01(Leadwerks::Window* window,Context* context,World* world,Camera* camera);
         virtual ~World_01();
         void Update();
+        void InputUpdate();
     protected:
     private:
     	FloorObject* _floorObject;

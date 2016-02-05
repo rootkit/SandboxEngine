@@ -34,7 +34,7 @@ bool App::Start()
     std::string title = "RedRequest";
 
 
-	this->window = Leadwerks::Window::Create("SpaceColony",200);
+	this->window = Leadwerks::Window::Create(title,200);
 
 	//Create a context
 	this->context = Context::Create(window);
@@ -82,6 +82,10 @@ bool App::Loop()
 	}
 
 	Leadwerks::Time::Update();
+
+    this->CurrentScene->InputUpdate();
+
+	this->CurrentScene->Update();
 
 	this->world->Update();
 	this->world->Render();

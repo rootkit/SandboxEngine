@@ -1,0 +1,7 @@
+{
+	Window : {
+		Fullscreen: true,
+		Width: 1920,
+		Heigth: 1080
+	}
+}

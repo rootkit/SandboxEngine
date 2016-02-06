@@ -16,7 +16,9 @@ Player::Player(class Scene* scene)
     this->_playerPosition = new Leadwerks::Vec3();
     this->_playerPivot = Leadwerks::Pivot::Create();
     this->_playerPivot->SetPhysicsMode(Leadwerks::Entity::CharacterPhysics);
-    this->_playerPivot->SetPosition(0,4,0);
+
+    this->_playerPivot->SetPosition(this->_scene->PlayerStart->GetPosition(true).x,this->_scene->PlayerStart->GetPosition(true).y,this->_scene->PlayerStart->GetPosition(true).z);
+
     this->_playerPivot->SetMass(1);
 
     ///Creating Camera Vectors
@@ -45,11 +47,8 @@ void Player::Update()
         this->_strafeCurrentSpeed =  Leadwerks::Math::Curve(this->_strafeSpeed,this->_strafeCurrentSpeed,5);
     }
 
-    this->_scene->camera->SetPosition(this->_playerPosition->x,this->_playerPosition->y + this->_playerCurrentHeigth,this->_playerPosition->z);
-    //Leadwerks::Camera::SetRotation()
-    //Leadwerks::Vec3* torque = new Leadwerks::Vec3(0,0.1,0);
-    //this->_scene->camera->SetRotation(((this->_scene->camera->GetRotation(true) + (*torque) ) * 0.1)* Leadwerks::Time::GetSpeed(),true);
-    this->_playerPivot->SetInput(this->_cameraRotation->y,this->_playerMovement->z, this->_playerMovement->x,this->_currentJumpForce, false, 1);
+    this->_scene->camera->SetPosition(this->_playerPosition->x, Leadwerks::Math::Curve(this->_playerPosition->y + this->_playerCurrentHeigth, this->_scene->camera->GetPosition().y,8),this->_playerPosition->z);
+    this->_playerPivot->SetInput(this->_cameraRotation->y,this->_playerMovement->z, this->_playerMovement->x,this->_currentJumpForce,this->_crouching, 1,0.5,true);
 }
 
 void Player::InputUpdate()
@@ -59,7 +58,11 @@ void Player::InputUpdate()
     this->_mouseDiference->x = this->_currentMousePosition->x - this->_mouseCenter->x;
     this->_mouseDiference->y = this->_currentMousePosition->y - this->_mouseCenter->y;
 
-    this->_cameraRotation->x += this->_mouseDiference->y / this->_mouseSensibility;
+    float tempCameraRotationX = this->_cameraRotation->x + (this->_mouseDiference->y / this->_mouseSensibility);
+
+    if(tempCameraRotationX > this->_cameraTopAngle && tempCameraRotationX < this->_cameraBottomAngle)
+        this->_cameraRotation->x = tempCameraRotationX;
+
     this->_cameraRotation->y += this->_mouseDiference->x / this->_mouseSensibility;
     this->_scene->window->SetMousePosition(this->_mouseCenter->x,this->_mouseCenter->y);
 

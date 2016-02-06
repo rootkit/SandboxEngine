@@ -21,7 +21,7 @@ Entity* Scene::GetMapEntityByName(std::string entityName)
     int id = 0;
     for (iter; iter != mapEntities.end(); iter++)
     {
-        Entity* entity = *iter;
+        Leadwerks::Entity* entity = *iter;
         //if (entity->script != NULL) {
         System::Print(entity->GetKeyValue("name"));
         //}
@@ -55,14 +55,14 @@ void Scene::LoadMap(std::string mapFilename)
 	///DEFAULT CAMERA
 	this->camera = Leadwerks::Camera::Create();
 	///_PLAYER_START
-	Entity* playerStart = this->GetMapEntityByName("_PLAYER_START");
-	if(playerStart != NULL){
+	this->PlayerStart = this->GetMapEntityByName("_PLAYER_START");
+	if(PlayerStart != NULL){
         Player* localPlayer = new Player(this);
         this->LocalPlayers.push_back(localPlayer);
 	}
 
     ///SET CAMERA DEFAULT'S
-    this->camera->SetPosition(playerStart->GetPosition(true).x,playerStart->GetPosition(true).y + 3,playerStart->GetPosition(true).z,true);
+    this->camera->SetPosition(PlayerStart->GetPosition(true).x,PlayerStart->GetPosition(true).y + 3,PlayerStart->GetPosition(true).z,true);
     std::string postefect_bloom = System::GetProperty("shaders","Shaders/PostEffects/bloom.lua");
 	this->camera->AddPostEffect(postefect_bloom);
 

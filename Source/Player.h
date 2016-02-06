@@ -37,6 +37,8 @@ class Player
         bool                _running = false;
         //Camera
         Leadwerks::Vec3*    _cameraRotation;
+        float               _cameraTopAngle = -45;
+        float               _cameraBottomAngle = 80;
 };
 
 #endif // PLAYER_H

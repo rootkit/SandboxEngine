@@ -15,6 +15,7 @@ class Scene
         Camera* camera;
 
         std::vector<class Player*> LocalPlayers;
+        Leadwerks::Entity* PlayerStart;
 
         Scene(Leadwerks::Window* window,Context* context,World* world,Camera* camera);
         void Update();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Leadwerks.h"
+#include "AppConfiguration.h"
 #include "Scene.h"
 #include "Worlds/World_01.h"
 
@@ -15,6 +16,7 @@ public:
 	Context* context;
 	World* world;
 	Camera* camera;
+	AppConfiguration* appjson;
 
     Leadwerks::Texture* LoadingScreen;
 

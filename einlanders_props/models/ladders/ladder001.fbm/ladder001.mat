@@ -1,0 +1,5 @@
+texture0=.\ladder001_diffuse.tex
+texture1=.\ladder001_normal.tex
+texture2=.\ladder001_specular.tex
+lightingmode=1
+shader="Shaders/Model/diffuse+normal+specular.shader"

@@ -1,0 +1,5 @@
+texture0=.\plane table_d.tex
+texture1=.\plane table_n.tex
+texture2=.\plane table_s.tex
+lightingmode=1
+shader="Shaders/Model/diffuse+normal+specular.shader"

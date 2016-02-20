@@ -1,0 +1,5 @@
+texture0=.\shelf001_diffuse.tex
+texture1=.\shelf001_normal.tex
+texture2=.\shelf001_specular.tex
+lightingmode=1
+shader="Shaders/Model/diffuse+normal+specular.shader"

@@ -64,7 +64,9 @@ void Scene::LoadMap(std::string mapFilename)
     ///SET CAMERA DEFAULT'S
     this->camera->SetPosition(PlayerStart->GetPosition(true).x,PlayerStart->GetPosition(true).y + 3,PlayerStart->GetPosition(true).z,true);
     std::string postefect_bloom = System::GetProperty("shaders","Shaders/PostEffects/bloom.lua");
-	this->camera->AddPostEffect(postefect_bloom);
+    std::string postefect_ssao = System::GetProperty("shaders","Shaders/PostEffects/ssao.lua");
+	//this->camera->AddPostEffect(postefect_bloom);
+	this->camera->AddPostEffect(postefect_ssao);
 
 }
 

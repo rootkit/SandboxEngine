@@ -3,7 +3,7 @@
 
 using namespace Leadwerks;
 
-App::App() : window(NULL), context(NULL), world(NULL), camera(NULL) {}
+App::App() : window(NULL), context(NULL), world(NULL), camera(NULL), appjson(NULL) {}
 
 App::~App() { delete world; delete window; }
 
@@ -33,6 +33,7 @@ bool App::Start()
 
     std::string title = "RedRequest";
 
+    this->appjson = new AppConfiguration();
 
 	this->window = Leadwerks::Window::Create(title,0,0,1920,1080,Leadwerks::Window::FullScreen);
 

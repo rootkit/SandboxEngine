@@ -1,0 +1,5 @@
+texture0=.\stool001_diffuse.tex
+texture1=.\stool001_normal.tex
+texture2=.\stool001_specular.tex
+lightingmode=1
+shader="Shaders/Model/diffuse+normal+specular.shader"

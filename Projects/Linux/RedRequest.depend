@@ -1374,18 +1374,19 @@
 	"Leadwerks.h"
 	"Leadwerks.h"
 
-1454723697 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.cpp
+1454978186 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.cpp
 	"App.h"
 
-1452060276 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.h
+1454978122 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/App.h
 	"Leadwerks.h"
+	"AppConfiguration.h"
 	"Scene.h"
 	"Worlds/World_01.h"
 
 1452137704 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/main.cpp
 	"App.h"
 
-1454722605 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.cpp
+1455929160 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.cpp
 	"Scene.h"
 
 1454722516 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.h
@@ -1433,4 +1434,19 @@
 
 1454723402 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Player.cpp
 	"Player.h"
+
+1455926953 source:/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/AppConfiguration.cpp
+	"AppConfiguration.h"
+
+1454982293 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/AppConfiguration.h
+	<jsoncpp/json/json.h>
+	<cstdio>
+	<string>
+	<fstream>
+
+1409502846 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/include/easyjson/json.h
+	<vector>
+	<map>
+	<string>
+	<stdexcept>
 

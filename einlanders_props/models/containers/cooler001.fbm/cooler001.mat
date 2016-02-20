@@ -1,0 +1,5 @@
+texture0=.\cooler001_diffuse.tex
+texture1=.\cooler001_normal.tex
+texture2=.\cooler001_specular.tex
+lightingmode=1
+shader="Shaders/Model/diffuse+normal+specular.shader"

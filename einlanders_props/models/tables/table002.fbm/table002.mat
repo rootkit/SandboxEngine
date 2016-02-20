@@ -1,0 +1,5 @@
+texture0=.\table002_diffuse.tex
+texture1=.\table002_normal.tex
+texture2=.\table002_specular.tex
+lightingmode=1
+shader="Shaders/Model/diffuse+normal+specular.shader"

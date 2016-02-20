@@ -3,32 +3,26 @@
 
 AppConfiguration::AppConfiguration()
 {
-    /*ifstream appJsonTxt;
-    appJsonTxt.open ("example.txt");
+   /* std::fstream appJsonTxt;
+    appJsonTxt.open ("Config/app.json", std::fstream::in | std::fstream::out | std::fstream::app);
 
-    Json::Reader reader;
-    Json::Value root;
+    _root = new Json::Value;
 
-    string json = "";
-    string tmpLine = "";
+    _reader = new Json::Reader();
 
-    while(!appJsonTxt.eof()) // To get you all the lines.
-    {
-        getline(appJsonTxt,tmpLine); // Saves the line in STRING.
-        json = json + tmpLine;
+    std::string jsonString;
+
+    while(appJsonTxt.eof()){
+
+        jsonString += appJsonTxt.getline()
+
+        jsonString.begin();
+
     }
 
+    _reader->parse(appJsonTxt,_root);
 
-    if (appJsonTxt != NULL && reader.parse(json,root)) {
-        const Json::Value arrayDest = root["dest"];
-        for (unsigned int i = 0; i < arrayDest.size(); i++) {
-            if (!arrayDest[i].isMember("name"))
-                continue;
-            std::string out;
-            out = arrayDest[i]["name"].asString();
-            std::cout << out << "\n";
-        }
-    }
+
     appJsonTxt.close();*/
 }
 

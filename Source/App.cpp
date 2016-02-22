@@ -35,7 +35,9 @@ bool App::Start()
 
     this->appjson = new AppConfiguration();
 
-	this->window = Leadwerks::Window::Create(title,0,0,1920,1080,Leadwerks::Window::FullScreen);
+	//this->window = Leadwerks::Window::Create(title,0,0,1920,1080,Leadwerks::Window::FullScreen);
+	this->window = Leadwerks::Window::Create(title,0,0,1360,768,Leadwerks::Window::FullScreen);
+	this->window = Leadwerks::Window::Create(title,0,0,1366,768,Leadwerks::Window::FullScreen);
 
 	//Create a context
 	this->context = Context::Create(window);
@@ -72,6 +74,7 @@ bool App::Start()
 
 bool App::Loop()
 {
+    this->context->Clear();
 	//Close the window to end the program
 	if (this->window->Closed()) return false;
 
@@ -85,13 +88,14 @@ bool App::Loop()
 	Leadwerks::Time::Update();
 
     this->CurrentScene->InputUpdate();
-
 	this->CurrentScene->Update();
 
 	this->world->Update();
 	this->world->Render();
 
-    this->context->Sync(false);
+    this->CurrentScene->DrawContext();
+
+    this->context->Sync();
 
 	return true;
 }

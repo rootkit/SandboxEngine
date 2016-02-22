@@ -16,10 +16,41 @@ Player::Player(class Scene* scene)
     this->_playerPosition = new Leadwerks::Vec3();
     this->_playerPivot = Leadwerks::Pivot::Create();
     this->_playerPivot->SetPhysicsMode(Leadwerks::Entity::CharacterPhysics);
+    this->_playerPivot->SetCollisionType(Leadwerks::COLLISION_CHARACTER);
 
     this->_playerPivot->SetPosition(this->_scene->PlayerStart->GetPosition(true).x,this->_scene->PlayerStart->GetPosition(true).y,this->_scene->PlayerStart->GetPosition(true).z);
 
     this->_playerPivot->SetMass(1);
+
+
+    ///Creating body Physics
+    this->_body = Leadwerks::Shape::Box(0,0,0, 0,0,0, 1,3,1);
+    this->_bodyModel = Leadwerks::Model::Box(this->_playerPivot);
+    this->_bodyModel->SetPosition(0,1,0);
+    this->_bodyModel->SetShape(this->_body);
+    //this->_bodyModel->SetScale(0.5,1,0.5);
+    this->_bodyModel->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
+    this->_bodyModelMaterial = Leadwerks::Material::Create();
+    this->_bodyModelMaterial->SetBlendMode(Leadwerks::Blend::Invisible);
+    this->_bodyModelMaterial->SetShadowMode(0);
+    this->_bodyModel->SetMaterial(this->_bodyModelMaterial);
+
+    ///Creating Punch Physics
+    this->_punchShape = Leadwerks::Shape::Sphere(0,0,0, 0,0,0, 1,1,1);
+    this->_punchModel = Leadwerks::Model::Sphere(16,this->_scene->camera);
+    this->_punchModel->SetMass(10);
+    this->_punchModel->SetGravityMode(0);
+    this->_punchModel->SetPosition(0,1,0,false);
+    this->_punchModel->SetShape(this->_punchShape);
+    this->_punchModel->SetScale(0.5,0.5,0.5);
+    this->_punchModel->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
+    this->_punchModelMaterial = Leadwerks::Material::Create();
+    this->_punchModelMaterial->SetBlendMode(Leadwerks::Blend::Invisible);
+    this->_punchModelMaterial->SetShadowMode(0);
+    this->_punchModel->SetMaterial(this->_punchModelMaterial);
+
+    ///Crossair
+    this->_crosshair = Leadwerks::Texture::Load("Materials/Crosshair/Crosshair.tex");
 
     ///Creating Camera Vectors
     this->_cameraRotation = new Leadwerks::Vec3();
@@ -47,8 +78,31 @@ void Player::Update()
         this->_strafeCurrentSpeed =  Leadwerks::Math::Curve(this->_strafeSpeed,this->_strafeCurrentSpeed,5);
     }
 
-    this->_scene->camera->SetPosition(this->_playerPosition->x, Leadwerks::Math::Curve(this->_playerPosition->y + this->_playerCurrentHeigth, this->_scene->camera->GetPosition().y,8),this->_playerPosition->z);
+    this->_scene->camera->SetPosition(this->_playerPosition->x, Leadwerks::Math::Curve(this->_playerPosition->y + this->_playerCurrentHeigth, this->_scene->camera->GetPosition().y,4),this->_playerPosition->z);
     this->_playerPivot->SetInput(this->_cameraRotation->y,this->_playerMovement->z, this->_playerMovement->x,this->_currentJumpForce,this->_crouching, 1,0.5,true);
+
+    //this->_body->position = Leadwerks::Vec3(this->_playerPosition->x,this->_playerPosition->y,this->_playerPosition->z);
+
+    if(this->_punching)
+    {
+        //this->_punchModel->SetPosition(0,0,1,false);
+        this->_punchModel->SetPosition(0,0,Leadwerks::Math::Curve(2,this->_punchModel->GetPosition().z,2),false);
+        if(this->_punchModel->GetPosition().z >= 1.8)
+            this->_punching = false;
+
+        //this->_punchModel->tr
+
+    }
+    else
+    {
+        this->_punchModel->SetPosition( 0,0,Leadwerks::Math::Curve(0,this->_punchModel->GetPosition().z,10), false);
+        if(this->_punchModel->GetPosition().z <= 1)
+            this->_freeToPunch = true;
+        //this->_punchModel->SetPosition(0,0,0,false);
+    }
+
+    //this->_punchModel->SetRotation(0,0,0,false);
+    //this->_punchModel->SetRotation(this->_scene->camera->GetRotation().x,this->_scene->camera->GetRotation().y,this->_scene->camera->GetRotation().z,false);
 }
 
 void Player::InputUpdate()
@@ -87,7 +141,21 @@ void Player::InputUpdate()
         this->Run();
     else
         this->Walk();
+
+    ///Punch
+    if(this->_scene->window->MouseHit(1))
+        this->Punch();
 }
+
+
+void Player::DrawContext()
+{
+    this->_scene->context->SetBlendMode(Leadwerks::Blend::Alpha);
+    this->_scene->context->DrawImage(this->_crosshair,
+                                    (this->_scene->window->GetWidth() / 2) - (this->_crosshair->GetWidth() / 2),
+                                    (this->_scene->window->GetHeight() / 2) - (this->_crosshair->GetHeight() / 2));
+}
+
 void Player::Crouch()
 {
     this->_crouching = !this->_crouching;
@@ -106,4 +174,12 @@ void Player::Walk()
     this->_running = false;
 }
 
-
+void Player::Punch()
+{
+    if(this->_freeToPunch)
+        if(!this->_punching)
+        {
+            this->_punching = true;
+            this->_freeToPunch = false;
+        }
+}

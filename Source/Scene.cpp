@@ -65,8 +65,12 @@ void Scene::LoadMap(std::string mapFilename)
     this->camera->SetPosition(PlayerStart->GetPosition(true).x,PlayerStart->GetPosition(true).y + 3,PlayerStart->GetPosition(true).z,true);
     std::string postefect_bloom = System::GetProperty("shaders","Shaders/PostEffects/bloom.lua");
     std::string postefect_ssao = System::GetProperty("shaders","Shaders/PostEffects/ssao.lua");
+    std::string postefect_hdr = System::GetProperty("shaders","Shaders/PostEffects/06_pp_hdr.lua");
+    std::string postefect_fxaa = System::GetProperty("shaders","Shaders/PostEffects/99_pp_fxaa.lua");
 	//this->camera->AddPostEffect(postefect_bloom);
+	this->camera->AddPostEffect(postefect_fxaa);
 	this->camera->AddPostEffect(postefect_ssao);
+	//this->camera->AddPostEffect(postefect_hdr);
 
 }
 
@@ -78,6 +82,12 @@ void Scene::Update()
 void Scene::InputUpdate()
 {
     this->LocalPlayersInputUpdate();
+}
+
+
+void Scene::DrawContext()
+{
+    this->LocalPlayersDrawContext();
 }
 
 BuildMatrixObject* Scene::AddBuildMatrixObject(std::string prefabSet, Leadwerks::Vec3* buildPosition,Leadwerks::Vec3* buildSize, Leadwerks::Vec3* blockSize)
@@ -109,4 +119,14 @@ void Scene::LocalPlayersInputUpdate()
     }
 }
 
+void Scene::LocalPlayersDrawContext()
+{
+    vector<class Player*>::iterator iter = this->LocalPlayers.begin();
+    int id = 0;
+    for (iter; iter != this->LocalPlayers.end(); iter++)
+    {
+        class Player* entity = *iter;
 
+        entity->DrawContext();
+    }
+}

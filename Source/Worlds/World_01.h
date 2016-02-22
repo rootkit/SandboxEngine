@@ -14,6 +14,7 @@ class World_01 : public Scene
         virtual ~World_01();
         void Update();
         void InputUpdate();
+        void DrawContext();
     protected:
     private:
     	FloorObject* _floorObject;

@@ -34,6 +34,9 @@
 					<Add library="pthread" />
 					<Add library="jsoncpp" />
 				</Linker>
+				<Environment>
+					<Variable name="LeadwerksPath" value="/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks" />
+				</Environment>
 			</Target>
 			<Target title="Release">
 				<Option output="../../RedRequest" prefix_auto="0" extension_auto="0" />
@@ -133,7 +136,7 @@
 		<Unit filename="../../Source/main.cpp" />
 		<Extensions>
 			<code_completion>
-				<search_path add="/home/geldo/.steam/steam/steamapps/common/Leadwerks/Include" />
+				<search_path add="../../Leadwerks/Include" />
 			</code_completion>
 			<debugger />
 		</Extensions>

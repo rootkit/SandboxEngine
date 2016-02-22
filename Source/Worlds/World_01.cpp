@@ -27,3 +27,8 @@ void World_01::InputUpdate()
 {
     Scene::InputUpdate();
 }
+
+void World_01::DrawContext()
+{
+    Scene::DrawContext();
+}

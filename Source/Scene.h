@@ -20,6 +20,7 @@ class Scene
         Scene(Leadwerks::Window* window,Context* context,World* world,Camera* camera);
         void Update();
         void InputUpdate();
+        void DrawContext();
 
         BuildMatrixObject* AddBuildMatrixObject(std::string prefabSet, Leadwerks::Vec3* buildPosition,Leadwerks::Vec3* buildSize, Leadwerks::Vec3* blockSize);
 
@@ -30,6 +31,7 @@ class Scene
         Entity* GetMapEntityByName(std::string entityName);
         void LocalPlayersUpdate();
         void LocalPlayersInputUpdate();
+        void LocalPlayersDrawContext();
 };
 
 #endif // SCENE_H

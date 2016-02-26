@@ -35,7 +35,7 @@
 					<Add library="jsoncpp" />
 				</Linker>
 				<Environment>
-					<Variable name="LeadwerksPath" value="/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks" />
+					<Variable name="LeadwerksPath" value="../../Leadwerks" />
 				</Environment>
 			</Target>
 			<Target title="Release">

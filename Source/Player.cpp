@@ -49,6 +49,14 @@ Player::Player(class Scene* scene)
     this->_punchModelMaterial->SetShadowMode(0);
     this->_punchModel->SetMaterial(this->_punchModelMaterial);
 
+    ///Creating Weapons Models
+    this->_weapon = Leadwerks::Pivot::Create(this->_scene->camera);
+    this->_weapon->SetPosition(0,-0.1,0.1,false);
+    this->_weaponModel = Leadwerks::Prefab::Load("Prefabs/Weapons/arms.pfb");
+    this->_weaponModel->SetParent(this->_weapon);
+    this->_weaponModel->SetPosition(0,0,0,false);
+    //this->_weaponModel->SetAnimationFrame(0,1,"fire");
+
     ///Crossair
     this->_crosshair = Leadwerks::Texture::Load("Materials/Crosshair/Crosshair.tex");
 
@@ -66,7 +74,7 @@ void Player::Update()
     this->_scene->camera->SetRotation(*this->_cameraRotation);
 
     if(this->_crouching)
-        this->_playerCurrentHeigth = Leadwerks::Math::Curve(this->_playerHeigth - 1,this->_playerCurrentHeigth,5);
+        this->_playerCurrentHeigth = Leadwerks::Math::Curve(this->_playerHeigth - 0.6,this->_playerCurrentHeigth,5);
     else
         this->_playerCurrentHeigth =  Leadwerks::Math::Curve(this->_playerHeigth,this->_playerCurrentHeigth,5);
 
@@ -100,6 +108,9 @@ void Player::Update()
             this->_freeToPunch = true;
         //this->_punchModel->SetPosition(0,0,0,false);
     }
+
+    ///Weapon Ajusts
+    //this->_weapon->SetPosition(0,this->_playerCurrentHeigth,0,false);
 
     //this->_punchModel->SetRotation(0,0,0,false);
     //this->_punchModel->SetRotation(this->_scene->camera->GetRotation().x,this->_scene->camera->GetRotation().y,this->_scene->camera->GetRotation().z,false);

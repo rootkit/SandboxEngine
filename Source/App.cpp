@@ -35,9 +35,9 @@ bool App::Start()
 
     this->appjson = new AppConfiguration();
 
-	//this->window = Leadwerks::Window::Create(title,0,0,1920,1080,Leadwerks::Window::FullScreen);
-	this->window = Leadwerks::Window::Create(title,0,0,1360,768,Leadwerks::Window::FullScreen);
-	this->window = Leadwerks::Window::Create(title,0,0,1366,768,Leadwerks::Window::FullScreen);
+	this->window = Leadwerks::Window::Create(title,0,0,1920,1080,Leadwerks::Window::FullScreen);
+	//this->window = Leadwerks::Window::Create(title,0,0,1360,768,Leadwerks::Window::FullScreen);
+	//this->window = Leadwerks::Window::Create(title,0,0,1366,768,Leadwerks::Window::FullScreen);
 
 	//Create a context
 	this->context = Context::Create(window);

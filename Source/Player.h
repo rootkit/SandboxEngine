@@ -22,12 +22,16 @@ class Player
         Leadwerks::Shape*       _body;
         Leadwerks::Model*       _bodyModel;
         Leadwerks::Material*    _bodyModelMaterial;
-        //Weapons
+        //Punch Physics
         Leadwerks::Shape*       _punchShape;
         Leadwerks::Model*       _punchModel;
         Leadwerks::Material*    _punchModelMaterial;
         float                   _punching = false;
         float                   _freeToPunch = true;
+        //Weapons
+        Leadwerks::Entity*      _weapon;
+        Leadwerks::Entity*      _weaponModel;
+
         //Crosshair
         Leadwerks::Texture*     _crosshair;
         //Mouse

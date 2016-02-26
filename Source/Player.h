@@ -31,7 +31,7 @@ class Player
         //Weapons
         Leadwerks::Entity*      _weapon;
         Leadwerks::Entity*      _weaponModel;
-
+        float                   _timer;
         //Crosshair
         Leadwerks::Texture*     _crosshair;
         //Mouse

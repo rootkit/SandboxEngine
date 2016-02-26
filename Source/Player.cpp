@@ -51,7 +51,7 @@ Player::Player(class Scene* scene)
 
     ///Creating Weapons Models
     this->_weapon = Leadwerks::Pivot::Create(this->_scene->camera);
-    this->_weapon->SetPosition(0,-0.1,0.1,false);
+    this->_weapon->SetPosition(0,-0.1,0.0,false);
     this->_weaponModel = Leadwerks::Prefab::Load("Prefabs/Weapons/arms.pfb");
     this->_weaponModel->SetParent(this->_weapon);
     this->_weaponModel->SetPosition(0,0,0,false);
@@ -111,6 +111,8 @@ void Player::Update()
 
     ///Weapon Ajusts
     //this->_weapon->SetPosition(0,this->_playerCurrentHeigth,0,false);
+    this->_timer = Leadwerks::Time::GetCurrent() / 40;
+    this->_weaponModel->SetAnimationFrame(this->_timer, 10, 0, true);
 
     //this->_punchModel->SetRotation(0,0,0,false);
     //this->_punchModel->SetRotation(this->_scene->camera->GetRotation().x,this->_scene->camera->GetRotation().y,this->_scene->camera->GetRotation().z,false);

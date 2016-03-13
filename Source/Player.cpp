@@ -62,6 +62,15 @@ Player::Player(class Scene* scene)
 
     ///Creating Camera Vectors
     this->_cameraRotation = new Leadwerks::Vec3();
+
+    ///Pick Info
+    //this->_pickinfo = new Leadwerks::PickInfo();
+    //Create a sphere to indicate where the pick hits
+    this->_pickSphere = Leadwerks::Model::Sphere();
+    this->_pickSphere->SetCollisionType(Leadwerks::COLLISION_NONE);
+    this->_pickSphere->SetColor(1.0,0.0,0.0);
+    this->_pickSphere->SetPickMode(0);
+    //this->_pickSphere->Hide();
 }
 
 Player::~Player()
@@ -116,6 +125,14 @@ void Player::Update()
 
     //this->_punchModel->SetRotation(0,0,0,false);
     //this->_punchModel->SetRotation(this->_scene->camera->GetRotation().x,this->_scene->camera->GetRotation().y,this->_scene->camera->GetRotation().z,false);
+
+    ///Pick Info
+    Leadwerks::Vec3 p0 = this->_scene->camera->GetPosition(true);
+	Leadwerks::Vec3 p1 = Leadwerks::Transform::Point(0,0,1,this->_scene->camera,NULL);
+
+	if(this->_scene->world->Pick(p0,p1, this->_pickinfo,0, true)){
+        this->_pickSphere->SetPosition(this->_pickinfo.position);
+	}
 }
 
 void Player::InputUpdate()
@@ -167,6 +184,20 @@ void Player::DrawContext()
     this->_scene->context->DrawImage(this->_crosshair,
                                     (this->_scene->window->GetWidth() / 2) - (this->_crosshair->GetWidth() / 2),
                                     (this->_scene->window->GetHeight() / 2) - (this->_crosshair->GetHeight() / 2));
+
+    if(this->_pickinfo.entity != NULL){
+
+       try{
+            WorldObject* _worldObject = dynamic_cast<WorldObject*>(this->_pickinfo.entity);
+
+            if(_worldObject != NULL)
+                //if(_worldObject typedef WorldObject)
+                    this->_scene->context->DrawText("PICK INFO: " + _worldObject->ObjectType,0,0);
+        }catch(int e){
+
+        }
+    }
+    //this->_scene->context->DrawText("PICK INFO: " + boost::lexical_cast<int>(this->_pickinfo.entity->script->Instance().int ),0,0);
 }
 
 void Player::Crouch()

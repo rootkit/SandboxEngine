@@ -4,6 +4,8 @@
 #include "../../Source/Scene.h"
 #include "../../Source/Tools/FloorObject.h"
 #include "../../Source/Tools/BuildMatrixObject.h"
+///Objects
+#include "../WorldObjects/Tools/MonkeyWrench.h"
 
 using namespace Leadwerks;
 
@@ -19,6 +21,7 @@ class World_01 : public Scene
     private:
     	FloorObject* _floorObject;
     	BuildMatrixObject* _buildMatrixObject;
+    	MonkeyWrench* _monkeyWrench;
 };
 
 #endif // WORLD_01_H

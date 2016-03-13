@@ -1,8 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+#include <boost/lexical_cast.hpp>
 #include "Leadwerks.h"
 #include "Scene.h"
-
+#include "Misc/WorldObject.h"
 class Player
 {
     public:
@@ -34,6 +35,8 @@ class Player
         float                   _timer;
         //Crosshair
         Leadwerks::Texture*     _crosshair;
+        Leadwerks::PickInfo     _pickinfo;
+        Leadwerks::Model*        _pickSphere;
         //Mouse
         Leadwerks::Vec3*        _currentMousePosition;
         Leadwerks::Vec2*        _mouseDiference;

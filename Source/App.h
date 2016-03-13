@@ -22,7 +22,7 @@ public:
 
     Leadwerks::Font* DefaultFont;
 
-	Scene* CurrentScene;
+	World_01* CurrentScene;
 
 	App();
 	virtual ~App();

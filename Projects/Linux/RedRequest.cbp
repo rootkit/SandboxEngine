@@ -119,6 +119,8 @@
 		<Unit filename="../../Source/App.h" />
 		<Unit filename="../../Source/AppConfiguration.cpp" />
 		<Unit filename="../../Source/AppConfiguration.h" />
+		<Unit filename="../../Source/Misc/WorldObject.cpp" />
+		<Unit filename="../../Source/Misc/WorldObject.h" />
 		<Unit filename="../../Source/Player.cpp" />
 		<Unit filename="../../Source/Player.h" />
 		<Unit filename="../../Source/Scene.cpp" />
@@ -131,6 +133,8 @@
 		<Unit filename="../../Source/Tools/FloorObject.h" />
 		<Unit filename="../../Source/Tools/MapObject.cpp" />
 		<Unit filename="../../Source/Tools/MapObject.h" />
+		<Unit filename="../../Source/WorldObjects/Tools/MonkeyWrench.cpp" />
+		<Unit filename="../../Source/WorldObjects/Tools/MonkeyWrench.h" />
 		<Unit filename="../../Source/Worlds/World_01.cpp" />
 		<Unit filename="../../Source/Worlds/World_01.h" />
 		<Unit filename="../../Source/main.cpp" />

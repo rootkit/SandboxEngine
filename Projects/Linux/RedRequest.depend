@@ -1450,10 +1450,10 @@
 	<string>
 	<stdexcept>
 
-1456487594 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.cpp
+1457306864 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.cpp
 	"App.h"
 
-1455969086 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.h
+1457308286 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.h
 	"Leadwerks.h"
 	"AppConfiguration.h"
 	"Scene.h"
@@ -1465,7 +1465,7 @@
 	<string>
 	<fstream>
 
-1456087948 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Scene.h
+1457308788 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Scene.h
 	"Leadwerks.h"
 	"Tools/BuildMatrixObject.h"
 	"./Player.h"
@@ -1477,15 +1477,18 @@
 1455969086 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/BuildMatrixBlockObject.h
 	"Leadwerks.h"
 
-1456487419 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.h
+1457263879 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.h
+	<boost/lexical_cast.hpp>
 	"Leadwerks.h"
 	"Scene.h"
+	"Misc/WorldObject.h"
 
-1456088819 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Worlds/World_01.h
+1457307820 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Worlds/World_01.h
 	"Leadwerks.h"
 	"../../Source/Scene.h"
 	"../../Source/Tools/FloorObject.h"
 	"../../Source/Tools/BuildMatrixObject.h"
+	"../WorldObjects/Tools/MonkeyWrench.h"
 
 1455969086 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/FloorObject.h
 	"Leadwerks.h"
@@ -1497,7 +1500,7 @@
 1455969086 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/main.cpp
 	"App.h"
 
-1457206609 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Scene.cpp
+1457305557 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Scene.cpp
 	"Scene.h"
 
 1455969086 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/BuildMatrixBlockObject.cpp
@@ -1514,7 +1517,7 @@
 
 1455969086 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/MapObject.h
 
-1456088840 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Worlds/World_01.cpp
+1457315871 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Worlds/World_01.cpp
 	"World_01.h"
 
 1455583154 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Leadwerks.h
@@ -2964,7 +2967,7 @@
 	<CustomAlloc.h>
 	<CustomVehicleControllerJoint.h>
 
-1456487419 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.cpp
+1457309806 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.cpp
 	"Player.h"
 
 1452989093 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Leadwerks/Include/Leadwerks.h
@@ -4413,4 +4416,20 @@
 
 1424338741 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Leadwerks/Include/Classes/Drivers/Sound/OpenAL/Classes/OpenALSource.h
 	"../OpenALSoundDriver.h"
+
+1457315711 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Misc/WorldObject.h
+	"Leadwerks.h"
+	"../Scene.h"
+
+1457315779 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Misc/WorldObject.cpp
+	"WorldObject.h"
+
+1457315233 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/WorldObjects/Tools/MonkeyWrench.h
+	"Leadwerks.h"
+	<boost/lexical_cast.hpp>
+	"../../Scene.h"
+	"../../Misc/WorldObject.h"
+
+1457315982 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/WorldObjects/Tools/MonkeyWrench.cpp
+	"MonkeyWrench.h"
 

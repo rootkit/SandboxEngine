@@ -64,11 +64,14 @@ bool App::Start()
         }
     }*/
 
+    this->context->SetFont(this->DefaultFont);
+
     this->ShowLoading();
 
     //Instanciate World Controller
     this->CurrentScene = new World_01(this->window,this->context,this->world,this->camera);
 
+    this->DefaultFont->Release();
 	return true;
 }
 

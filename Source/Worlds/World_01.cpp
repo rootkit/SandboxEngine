@@ -10,6 +10,9 @@ World_01::World_01(Leadwerks::Window* window,Context* context,World* world,Camer
     //_floorObject = new FloorObject(this);
 
     //_buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(3.8399,3.8299,3.8399));
+    this->_monkeyWrench = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench->SetPosition(9,5,8,true);
+    this->_monkeyWrench->ObjectType = "MonkeyWrench";
 }
 
 World_01::~World_01()
@@ -20,7 +23,7 @@ World_01::~World_01()
 void World_01::Update()
 {
     Scene::Update();
-    //_buildMatrixObject->Update();
+    this->_monkeyWrench->Update();
 }
 
 void World_01::InputUpdate()
@@ -31,4 +34,5 @@ void World_01::InputUpdate()
 void World_01::DrawContext()
 {
     Scene::DrawContext();
+    this->_monkeyWrench->DrawContext();
 }

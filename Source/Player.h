@@ -33,6 +33,11 @@ class Player
         Leadwerks::Entity*      _weapon;
         Leadwerks::Entity*      _weaponModel;
         float                   _timer;
+        string                  _currentAnimation;
+        int                     _currentAnimationFrame = 0;
+        int                     _currentAnimationLength = 0;
+        int                     _currentAnimationTime = 0;
+        int                     _currentAnimationLastFrameTime = 0;
         //Crosshair
         Leadwerks::Texture*     _crosshair;
         Leadwerks::PickInfo     _pickinfo;
@@ -60,6 +65,8 @@ class Player
         Leadwerks::Vec3*        _cameraRotation;
         float                   _cameraTopAngle = -45;
         float                   _cameraBottomAngle = 80;
+        void _playAnimation(string animationName);
+        void _loopAnimation();
 };
 
 #endif // PLAYER_H

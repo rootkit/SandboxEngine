@@ -28,7 +28,7 @@ Player::Player(class Scene* scene)
     this->_bodyModel = Leadwerks::Model::Box(this->_playerPivot);
     this->_bodyModel->SetPosition(0,1,0);
     this->_bodyModel->SetShape(this->_body);
-    //this->_bodyModel->SetScale(0.5,1,0.5);
+    this->_bodyModel->SetScale(0.5,1,0.5);
     this->_bodyModel->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
     this->_bodyModelMaterial = Leadwerks::Material::Create();
     this->_bodyModelMaterial->SetBlendMode(Leadwerks::Blend::Invisible);
@@ -43,7 +43,7 @@ Player::Player(class Scene* scene)
     this->_punchModel->SetPosition(0,1,0,false);
     this->_punchModel->SetShape(this->_punchShape);
     this->_punchModel->SetScale(0.5,0.5,0.5);
-    this->_punchModel->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
+    this->_punchModel->SetCollisionType(Leadwerks::COLLISION_NONE);
     this->_punchModelMaterial = Leadwerks::Material::Create();
     this->_punchModelMaterial->SetBlendMode(Leadwerks::Blend::Invisible);
     this->_punchModelMaterial->SetShadowMode(0);
@@ -51,10 +51,11 @@ Player::Player(class Scene* scene)
 
     ///Creating Weapons Models
     this->_weapon = Leadwerks::Pivot::Create(this->_scene->camera);
-    this->_weapon->SetPosition(0,-0.1,0.0,false);
+    this->_weapon->SetPosition(0,0,0,false);
     this->_weaponModel = Leadwerks::Prefab::Load("Prefabs/Weapons/arms.pfb");
     this->_weaponModel->SetParent(this->_weapon);
-    this->_weaponModel->SetPosition(0,0,0,false);
+    this->_weaponModel->SetPosition(0,-0.2,0,false);
+    this->_currentAnimation = "Idle";
     //this->_weaponModel->SetAnimationFrame(0,1,"fire");
 
     ///Crossair
@@ -70,7 +71,7 @@ Player::Player(class Scene* scene)
     this->_pickSphere->SetCollisionType(Leadwerks::COLLISION_NONE);
     this->_pickSphere->SetColor(1.0,0.0,0.0);
     this->_pickSphere->SetPickMode(0);
-    //this->_pickSphere->Hide();
+    this->_pickSphere->Hide();
 }
 
 Player::~Player()
@@ -103,8 +104,8 @@ void Player::Update()
     if(this->_punching)
     {
         //this->_punchModel->SetPosition(0,0,1,false);
-        this->_punchModel->SetPosition(0,0,Leadwerks::Math::Curve(2,this->_punchModel->GetPosition().z,2),false);
-        if(this->_punchModel->GetPosition().z >= 1.8)
+        this->_punchModel->SetPosition(0,0,Leadwerks::Math::Curve(1,this->_punchModel->GetPosition().z,11),false);
+        if(this->_punchModel->GetPosition().z >= 0.7)
             this->_punching = false;
 
         //this->_punchModel->tr
@@ -121,7 +122,8 @@ void Player::Update()
     ///Weapon Ajusts
     //this->_weapon->SetPosition(0,this->_playerCurrentHeigth,0,false);
     this->_timer = Leadwerks::Time::GetCurrent() / 40;
-    this->_weaponModel->SetAnimationFrame(this->_timer, 10, 0, true);
+
+    this->_loopAnimation();
 
     //this->_punchModel->SetRotation(0,0,0,false);
     //this->_punchModel->SetRotation(this->_scene->camera->GetRotation().x,this->_scene->camera->GetRotation().y,this->_scene->camera->GetRotation().z,false);
@@ -200,6 +202,30 @@ void Player::DrawContext()
     //this->_scene->context->DrawText("PICK INFO: " + boost::lexical_cast<int>(this->_pickinfo.entity->script->Instance().int ),0,0);
 }
 
+void Player::_playAnimation(string animationName)
+{
+    if(this->_currentAnimation != animationName){
+        this->_currentAnimation = animationName;
+        this->_currentAnimationFrame = 0;
+        this->_currentAnimationLength = this->_weaponModel->GetAnimationLength(animationName);
+    }
+}
+
+void Player::_loopAnimation()
+{
+    if(Leadwerks::Time::GetCurrent() >= this->_currentAnimationLastFrameTime){
+
+        this->_currentAnimationLastFrameTime = Leadwerks::Time::GetCurrent() + 5;
+
+        if(this->_currentAnimationFrame <= (this->_currentAnimationLength - 1)){
+            this->_currentAnimationFrame++;
+            this->_weaponModel->SetAnimationFrame(this->_currentAnimationFrame, 10, this->_currentAnimation, true);
+        }else{
+            this->_playAnimation("Idle");
+        }
+    }
+}
+
 void Player::Crouch()
 {
     this->_crouching = !this->_crouching;
@@ -225,5 +251,6 @@ void Player::Punch()
         {
             this->_punching = true;
             this->_freeToPunch = false;
+            this->_playAnimation("Punch");
         }
 }

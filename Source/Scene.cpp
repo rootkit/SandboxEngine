@@ -37,8 +37,6 @@ Scene::Scene(Leadwerks::Window* window,Context* context,World* world,Camera* cam
 	this->context = context;
 	this->world = world;
 	this->camera = camera;
-
-
 }
 
 Scene::~Scene()
@@ -62,13 +60,15 @@ void Scene::LoadMap(std::string mapFilename)
 	}
 
     ///SET CAMERA DEFAULT'S
+    this->camera->SetHDRMode(true);
+    //  this->world->SetTessellationQuality(1);
     this->camera->SetPosition(PlayerStart->GetPosition(true).x,PlayerStart->GetPosition(true).y + 3,PlayerStart->GetPosition(true).z,true);
     std::string postefect_bloom = System::GetProperty("shaders","Shaders/PostEffects/bloom.lua");
     std::string postefect_ssao = System::GetProperty("shaders","Shaders/PostEffects/ssao.lua");
     std::string postefect_hdr = System::GetProperty("shaders","Shaders/PostEffects/06_pp_hdr.lua");
     std::string postefect_fxaa = System::GetProperty("shaders","Shaders/PostEffects/99_pp_fxaa.lua");
-	//this->camera->AddPostEffect(postefect_bloom);
-	//this->camera->AddPostEffect(postefect_fxaa);
+	this->camera->AddPostEffect(postefect_bloom);
+	this->camera->AddPostEffect(postefect_fxaa);
 	this->camera->AddPostEffect(postefect_ssao);
 	this->camera->AddPostEffect(postefect_hdr);
 

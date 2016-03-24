@@ -1,0 +1,20 @@
+//Leadwerks Material File
+
+blendmode=0
+castshadows=1
+zsort=0
+cullbackfaces=1
+depthtest=1
+pickmode=1
+depthmask=1
+diffuse=1.00000000,1.00000000,1.00000000,1.00000000
+specular=1.00000000,1.00000000,1.00000000,0.501960814
+alwaysuseshader=0
+mappingscale=1.00000000,1.00000000,1.00000000
+drawmode=-1
+
+shader="Shaders/Model/diffuse+normal+specular.shader"
+shader3="Shaders/Vegetation/diffuse+normal.shader"
+texture0="./beech_bark_diff.tex"
+texture1="./beech_bark_n.tex"
+texture2="./beech_bark_spec.tex"

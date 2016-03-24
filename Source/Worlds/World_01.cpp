@@ -5,14 +5,13 @@ World_01::World_01(Leadwerks::Window* window,Context* context,World* world,Camer
     : Scene(window,context,world,camera)
 {
     //ctor
-    this->LoadMap("Maps/start.map");
+    this->LoadMap("Maps/World_01.map");
 
     //_floorObject = new FloorObject(this);
 
     //_buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(3.8399,3.8299,3.8399));
     this->_monkeyWrench = new MonkeyWrench(NULL,this);
     this->_monkeyWrench->SetPosition(9,5,8,true);
-    this->_monkeyWrench->ObjectType = "MonkeyWrench";
 }
 
 World_01::~World_01()

@@ -4,7 +4,8 @@
 Player::Player(class Scene* scene)
 {
     this->_scene = scene;
-
+    ///Creating Inventory Object
+    this->_inventory = new Inventory();
     ///Creating Mouse Vectors
     this->_currentMousePosition = new Leadwerks::Vec3();
     this->_mouseDiference = new Leadwerks::Vec2();
@@ -24,11 +25,11 @@ Player::Player(class Scene* scene)
 
 
     ///Creating body Physics
-    this->_body = Leadwerks::Shape::Box(0,0,0, 0,0,0, 1,3,1);
+    this->_body = Leadwerks::Shape::Box(0,0,0, 0,0,0, 1,1,1);
     this->_bodyModel = Leadwerks::Model::Box(this->_playerPivot);
     this->_bodyModel->SetPosition(0,1,0);
     this->_bodyModel->SetShape(this->_body);
-    this->_bodyModel->SetScale(0.5,1,0.5);
+    this->_bodyModel->SetScale(0.05,1,0.05);
     this->_bodyModel->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
     this->_bodyModelMaterial = Leadwerks::Material::Create();
     this->_bodyModelMaterial->SetBlendMode(Leadwerks::Blend::Invisible);
@@ -36,25 +37,36 @@ Player::Player(class Scene* scene)
     this->_bodyModel->SetMaterial(this->_bodyModelMaterial);
 
     ///Creating Punch Physics
-    this->_punchShape = Leadwerks::Shape::Sphere(0,0,0, 0,0,0, 1,1,1);
-    this->_punchModel = Leadwerks::Model::Sphere(16,this->_scene->camera);
-    this->_punchModel->SetMass(10);
-    this->_punchModel->SetGravityMode(0);
-    this->_punchModel->SetPosition(0,1,0,false);
-    this->_punchModel->SetShape(this->_punchShape);
-    this->_punchModel->SetScale(0.5,0.5,0.5);
-    this->_punchModel->SetCollisionType(Leadwerks::COLLISION_NONE);
     this->_punchModelMaterial = Leadwerks::Material::Create();
     this->_punchModelMaterial->SetBlendMode(Leadwerks::Blend::Invisible);
     this->_punchModelMaterial->SetShadowMode(0);
-    this->_punchModel->SetMaterial(this->_punchModelMaterial);
+
+    this->_punchShapeRight = Leadwerks::Shape::Sphere(0,0,0, 0,0,0, 1,1,1);
+    this->_punchColliderModelRigth = Leadwerks::Model::Sphere(16);
+    this->_punchColliderModelRigth->SetMass(10);
+    this->_punchColliderModelRigth->SetGravityMode(0);
+    this->_punchColliderModelRigth->SetPosition(0,1,0,false);
+    this->_punchColliderModelRigth->SetShape(this->_punchShapeRight);
+    this->_punchColliderModelRigth->SetScale(0.5,0.5,0.5);
+    this->_punchColliderModelRigth->SetMaterial(this->_punchModelMaterial);
+    this->_punchColliderModelRigth->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
+
+    this->_punchShapeLeft = Leadwerks::Shape::Sphere(0,0,0, 0,0,0, 1,1,1);
+    this->_punchColliderModelLeft = Leadwerks::Model::Sphere(16);
+    this->_punchColliderModelLeft->SetMass(10);
+    this->_punchColliderModelLeft->SetGravityMode(0);
+    this->_punchColliderModelLeft->SetPosition(0,1,0,false);
+    this->_punchColliderModelLeft->SetShape(this->_punchShapeLeft);
+    this->_punchColliderModelLeft->SetScale(0.5,0.5,0.5);
+    this->_punchColliderModelLeft->SetMaterial(this->_punchModelMaterial);
+    this->_punchColliderModelLeft->SetCollisionType(Leadwerks::COLLISION_DEBRIS);
 
     ///Creating Weapons Models
     this->_weapon = Leadwerks::Pivot::Create(this->_scene->camera);
     this->_weapon->SetPosition(0,0,0,false);
     this->_weaponModel = Leadwerks::Prefab::Load("Prefabs/Weapons/arms.pfb");
     this->_weaponModel->SetParent(this->_weapon);
-    this->_weaponModel->SetPosition(0,-0.2,0,false);
+    this->_weaponModel->SetPosition(0,-0.2,-0.2,false);
     this->_currentAnimation = "Idle";
     //this->_weaponModel->SetAnimationFrame(0,1,"fire");
 
@@ -89,48 +101,51 @@ void Player::Update()
         this->_playerCurrentHeigth =  Leadwerks::Math::Curve(this->_playerHeigth,this->_playerCurrentHeigth,5);
 
     if(this->_running){
-        this->_moveCurrentSpeed = Leadwerks::Math::Curve(this->_moveSpeed + 3,this->_moveCurrentSpeed,5);
-        this->_strafeCurrentSpeed = Leadwerks::Math::Curve(this->_moveSpeed + 3,this->_strafeCurrentSpeed,5);
+        this->_moveCurrentSpeed = Leadwerks::Math::Curve(this->_moveSpeed + 1.3,this->_moveCurrentSpeed,5);
+        this->_strafeCurrentSpeed = Leadwerks::Math::Curve(this->_moveSpeed + 1.3,this->_strafeCurrentSpeed,5);
     }else{
         this->_moveCurrentSpeed =  Leadwerks::Math::Curve(this->_strafeSpeed,this->_moveCurrentSpeed,5);
         this->_strafeCurrentSpeed =  Leadwerks::Math::Curve(this->_strafeSpeed,this->_strafeCurrentSpeed,5);
     }
 
-    this->_scene->camera->SetPosition(this->_playerPosition->x, Leadwerks::Math::Curve(this->_playerPosition->y + this->_playerCurrentHeigth, this->_scene->camera->GetPosition().y,4),this->_playerPosition->z);
+    this->_scene->camera->SetPosition(this->_playerPosition->x, Leadwerks::Math::Curve(this->_playerPosition->y + this->_playerCurrentHeigth, this->_scene->camera->GetPosition().y,2),this->_playerPosition->z);
     this->_playerPivot->SetInput(this->_cameraRotation->y,this->_playerMovement->z, this->_playerMovement->x,this->_currentJumpForce,this->_crouching, 1,0.5,true);
 
     //this->_body->position = Leadwerks::Vec3(this->_playerPosition->x,this->_playerPosition->y,this->_playerPosition->z);
 
     if(this->_punching)
     {
-        //this->_punchModel->SetPosition(0,0,1,false);
-        this->_punchModel->SetPosition(0,0,Leadwerks::Math::Curve(1,this->_punchModel->GetPosition().z,11),false);
-        if(this->_punchModel->GetPosition().z >= 0.7)
+        if(this->_currentAnimationFrame == 25)
             this->_punching = false;
-
-        //this->_punchModel->tr
-
     }
     else
     {
-        this->_punchModel->SetPosition( 0,0,Leadwerks::Math::Curve(0,this->_punchModel->GetPosition().z,10), false);
-        if(this->_punchModel->GetPosition().z <= 1)
-            this->_freeToPunch = true;
-        //this->_punchModel->SetPosition(0,0,0,false);
+        this->_freeToPunch = true;
     }
 
     ///Weapon Ajusts
     //this->_weapon->SetPosition(0,this->_playerCurrentHeigth,0,false);
     this->_timer = Leadwerks::Time::GetCurrent() / 40;
-
     this->_loopAnimation();
 
-    //this->_punchModel->SetRotation(0,0,0,false);
-    //this->_punchModel->SetRotation(this->_scene->camera->GetRotation().x,this->_scene->camera->GetRotation().y,this->_scene->camera->GetRotation().z,false);
+    ///Punch Collider
+    Leadwerks::Entity* rNode1 = this->_weaponModel->GetChild(0);
+    Leadwerks::Entity* rNode2 = rNode1->GetChild(2);
+    Leadwerks::Entity* rNode3 = rNode2->GetChild(0);
+    Leadwerks::Entity* rPalm = rNode3;
+
+    this->_punchColliderModelRigth->SetPosition(rPalm->GetPosition(true),true);
+
+    Leadwerks::Entity* lNode1 = this->_weaponModel->GetChild(0);
+    Leadwerks::Entity* lNode2 = lNode1->GetChild(3);
+    Leadwerks::Entity* lNode3 = lNode2->GetChild(0);
+    Leadwerks::Entity* lPalm = lNode3;
+
+    this->_punchColliderModelLeft->SetPosition(lPalm->GetPosition(true),true);
 
     ///Pick Info
     Leadwerks::Vec3 p0 = this->_scene->camera->GetPosition(true);
-	Leadwerks::Vec3 p1 = Leadwerks::Transform::Point(0,0,1,this->_scene->camera,NULL);
+	Leadwerks::Vec3 p1 = Leadwerks::Transform::Point(0,0,1.5,this->_scene->camera,NULL);
 
 	if(this->_scene->world->Pick(p0,p1, this->_pickinfo,0, true)){
         this->_pickSphere->SetPosition(this->_pickinfo.position);
@@ -190,13 +205,15 @@ void Player::DrawContext()
     if(this->_pickinfo.entity != NULL){
 
        try{
-            WorldObject* _worldObject = dynamic_cast<WorldObject*>(this->_pickinfo.entity);
+            WorldObject* _worldObject = dynamic_cast<WorldObject*>(this->_pickinfo.entity->GetChild(0));
 
-            if(_worldObject != NULL)
-                //if(_worldObject typedef WorldObject)
-                    this->_scene->context->DrawText("PICK INFO: " + _worldObject->ObjectType,0,0);
+            if(_worldObject != NULL)                
+                this->_scene->context->DrawText("PICK INFO: " + _worldObject->GetName(),0,200);
+            else
+                this->_scene->context->DrawText("PICK INFO: NONE",0,200);
+
         }catch(int e){
-
+            this->_scene->context->DrawText("PICK INFO: NONE",0,200);
         }
     }
     //this->_scene->context->DrawText("PICK INFO: " + boost::lexical_cast<int>(this->_pickinfo.entity->script->Instance().int ),0,0);
@@ -215,7 +232,7 @@ void Player::_loopAnimation()
 {
     if(Leadwerks::Time::GetCurrent() >= this->_currentAnimationLastFrameTime){
 
-        this->_currentAnimationLastFrameTime = Leadwerks::Time::GetCurrent() + 5;
+        this->_currentAnimationLastFrameTime = Leadwerks::Time::GetCurrent() + 15;
 
         if(this->_currentAnimationFrame <= (this->_currentAnimationLength - 1)){
             this->_currentAnimationFrame++;
@@ -251,6 +268,13 @@ void Player::Punch()
         {
             this->_punching = true;
             this->_freeToPunch = false;
-            this->_playAnimation("Punch");
+
+            srand (time(NULL));
+            int animVar = rand() % 2;
+            if(animVar == 1){
+                this->_playAnimation("Punch");
+            }else{
+                this->_playAnimation("PunchSecondary");
+            }
         }
 }

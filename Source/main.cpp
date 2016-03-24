@@ -5,12 +5,24 @@
 			#include "App.h"
 		#endif
 	#endif
+#include <thread>
 
 using namespace Leadwerks;
+
+App* appStatic;
 
 void DebugErrorHook(char* c)
 {
 	int n=0;//<--------------------------- Add a breakpoint here to catch errors
+}
+
+void* InputUpdateLoop(void *vargs){
+    if(appStatic != NULL){
+        if(appStatic->world != NULL){
+            //appStatic->world->Update();
+            //appStatic->world->Render();
+        }
+	}
 }
 
     #ifdef __APPLE__
@@ -136,10 +148,15 @@ int main(int argc,const char *argv[])
 	}
 	else
 	{*/
+        pthread_t InputUpdateThead;
+
 		//Execute mobile-style App script
 		App* app = new App;
+		appStatic = app;
+
 		if (app->Start())
 		{
+            pthread_create(&InputUpdateThead,NULL,InputUpdateLoop,NULL);
 			while (app->Loop()) {}
 #ifdef DEBUG
 			Interpreter::Disconnect();

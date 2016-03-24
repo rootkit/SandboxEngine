@@ -4,24 +4,33 @@
 MonkeyWrench::MonkeyWrench(Leadwerks::Entity* parent,class Scene* scene)
     : WorldObject(parent,scene)
 {
-    this->entity = Leadwerks::Prefab::Load("Prefabs/Tools/MonkeyWrench.pfb");
-    Leadwerks::Shape* physicsShape = Leadwerks::Shape::Load("Prefabs/Tools/MonkeyWrench.phy");
-    this->SetShape(physicsShape);
-    this->entity->SetParent(this,false);
-    this->SetPhysicsMode(Leadwerks::Entity::CharacterPhysics);
-    this->SetCollisionType(Leadwerks::COLLISION_PROP);
-    this->SetMass(3);
+    ///Atributes
+    this->SetType("Tool");
+    this->SetSubType("Tool");
+    this->SetName("Monkey Wrench");
+    this->SetDescription("The monkey wrench (US) or gas grips (UK) is an adjustable wrench");
+    this->SetEquippably(true);
+    this->SetInteractive(true);
+    ///Physics
+    Leadwerks::World::SetCurrent(this->_scene->world);
+    this->entity = Leadwerks::Model::Load("Models/Tools/SM_MonkeyWrench.mdl");    
+    Leadwerks::Shape* physicsShape = Leadwerks::Shape::Load("Models/Tools/SM_MonkeyWrench.phy");
+    this->entity->SetShape(physicsShape);
+    this->SetParent(this->entity);
+    this->entity->SetCollisionType(Leadwerks::COLLISION_PROP);
+    this->entity->SetMass(10);    
+    WorldObject::SetPosition(0,0,0,false);        
 }
 
 MonkeyWrench::~MonkeyWrench()
 {
     //dtor
+    this->entity->Release();
 }
 
 void MonkeyWrench::Update()
 {
-    WorldObject::Update();
-    this->SetPosition(this->entity->GetPosition(true),true);
+    WorldObject::Update();    
 }
 
 void MonkeyWrench::DrawContext()
@@ -30,23 +39,23 @@ void MonkeyWrench::DrawContext()
 
     this->_scene->context->SetBlendMode(Blend::Alpha);
     this->_scene->context->SetColor(1,1,1);
-    this->_scene->context->DrawText("X:" + boost::lexical_cast<std::string>(this->entity->GetPosition(true).y),0,0);
+    this->_scene->context->DrawText("X:" + boost::lexical_cast<std::string>(this->entity->GetPosition(true).x),0,0);
+    this->_scene->context->DrawText("Y:" + boost::lexical_cast<std::string>(this->entity->GetPosition(true).y),0,40);
+    this->_scene->context->DrawText("Z:" + boost::lexical_cast<std::string>(this->entity->GetPosition(true).z),0,80);
     this->_scene->context->SetBlendMode(Blend::Solid);
 }
 
 void MonkeyWrench::SetPosition(Leadwerks::Vec3 position, bool global = false)
-{
-    WorldObject::SetPosition(position,global);
+{    
     this->entity->SetPosition(position,global);
 }
 
 void MonkeyWrench::SetPosition(float x, float y, float z, bool global = false)
-{
-    WorldObject::SetPosition(x,y,z,global);
+{    
     this->entity->SetPosition(x,y,z,global);
 }
 
 Leadwerks::Vec3 MonkeyWrench::GetPosition(bool global)
 {
-    return Leadwerks::Vec3(this->_position->x,this->_position->y,this->_position->z);
+    return Leadwerks::Vec3(this->entity->GetPosition().x,this->entity->GetPosition().y,this->entity->GetPosition().z);
 }

@@ -1,0 +1,21 @@
+//Leadwerks Material File
+
+blendmode=0
+castshadows=1
+zsort=0
+cullbackfaces=0
+depthtest=1
+pickmode=0
+depthmask=1
+diffuse=1.00000000,1.00000000,1.00000000,1.00000000
+specular=0.250980407,0.250980407,0.250980407,0.501960814
+alwaysuseshader=0
+mappingscale=1.00000000,1.00000000,1.00000000
+drawmode=-1
+
+shader="Shaders/Model/leaves.shader"
+shader1="Shaders/Model/Shadow/shadow+alphamask.shader"
+shader3="Shaders/Vegetation/leaves.shader"
+shader4="Shaders/Vegetation/Shadow/leaves.shader"
+texture0="./pinebranch_d.tex"
+texture1="./pinebranch_n.tex"

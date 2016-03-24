@@ -45,4 +45,62 @@ Leadwerks::Vec3 WorldObject::GetPosition(bool global)
     return Leadwerks::Vec3(this->_position->x,this->_position->y,this->_position->z);
 }
 
+void WorldObject::SetName(string value)
+{
+	this->_name = value;
+}
 
+void WorldObject::SetDescription(string value)
+{
+	this->_description = value;
+}
+
+void WorldObject::SetInteractive(bool value)
+{
+	this->_interactive = value;
+}
+
+void WorldObject::SetEquippably(bool value)
+{
+	this->_equippably = value;
+}
+
+void WorldObject::SetType(string value)
+{
+	this->_type = value;
+}
+
+void WorldObject::SetSubType(string value)
+{
+	this->_subType = value;
+}
+
+bool WorldObject::GetInteractive()
+{
+	return this->_interactive;
+}
+
+bool WorldObject::GetEquippably()
+{
+	return this->_equippably;
+}
+
+string WorldObject::GetType()
+{
+	return this->_type;
+}
+
+string WorldObject::GetSubType()
+{
+	return this->_subType;
+}
+
+string WorldObject::GetDescription()
+{
+	return this->_description;
+}
+
+string WorldObject::GetName()
+{
+	return this->_name;
+}

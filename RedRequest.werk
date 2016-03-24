@@ -13,6 +13,95 @@ AppID=0
 DepotID=0
 WorkshopItem
 {
+	fileid=366323032
+	title="Tree Pack"
+	datemodified=1420027520
+	files
+	{
+		"Tree Pack/Tree1/tg3_3.mat"
+		"Tree Pack/Tree1/tg3_3.tex"
+		"Tree Pack/Tree1/tg3_3_dot3.tex"
+		"Tree Pack/Tree1/tmp_trunk_skin_22.mat"
+		"Tree Pack/Tree1/tmp_trunk_skin_22.tex"
+		"Tree Pack/Tree1/tmp_trunk_skin_22_dot3.tex"
+		"Tree Pack/Tree1/Tree1.mdl"
+		"Tree Pack/Tree1/Tree1_Prefab.pfb"
+		"Tree Pack/Tree2/tg3_3.mat"
+		"Tree Pack/Tree2/tg3_3.tex"
+		"Tree Pack/Tree2/tg3_3_dot3.tex"
+		"Tree Pack/Tree2/Tree2.mdl"
+		"Tree Pack/Tree2/Tree2_Prefab.pfb"
+		"Tree Pack/Tree2/ttsca4.mat"
+		"Tree Pack/Tree2/ttsca4.tex"
+		"Tree Pack/Tree2/ttsca4_dot3.tex"
+		"Tree Pack/Tree3/Tree3.mdl"
+		"Tree Pack/Tree3/Tree3_Prefab.pfb"
+		"Tree Pack/Tree3/tztrunk_13.mat"
+		"Tree Pack/Tree3/tztrunk_13.tex"
+		"Tree Pack/Tree3/tztrunk_13_dot3.tex"
+		"Tree Pack/Tree3/wwwww.mat"
+		"Tree Pack/Tree3/wwwww.tex"
+		"Tree Pack/Tree3/wwwww_dot3.tex"
+		"Tree Pack/Tree4/reallyreally_old.mat"
+		"Tree Pack/Tree4/reallyreally_old.tex"
+		"Tree Pack/Tree4/reallyreally_old_dot3.tex"
+		"Tree Pack/Tree4/tmp_trunk_skin_15.mat"
+		"Tree Pack/Tree4/tmp_trunk_skin_15.tex"
+		"Tree Pack/Tree4/tmp_trunk_skin_15_dot3.tex"
+		"Tree Pack/Tree4/Tree4.mdl"
+		"Tree Pack/Tree4/Tree4_Prefab.pfb"
+		"Tree Pack/Tree5/t_skin12.mat"
+		"Tree Pack/Tree5/t_skin12.tex"
+		"Tree Pack/Tree5/t_skin12_dot3.tex"
+		"Tree Pack/Tree5/Tree5.mdl"
+		"Tree Pack/Tree5/Tree5_Prefab.pfb"
+		"Tree Pack/Tree5/wwwww.mat"
+		"Tree Pack/Tree5/wwwww.tex"
+		"Tree Pack/Tree5/wwwww_dot3.tex"
+		"Tree Pack/Tree1/tg3_3.mat.meta"
+		"Tree Pack/Tree1/tg3_3.tex.meta"
+		"Tree Pack/Tree1/tg3_3_dot3.tex.meta"
+		"Tree Pack/Tree1/tmp_trunk_skin_22.mat.meta"
+		"Tree Pack/Tree1/tmp_trunk_skin_22.tex.meta"
+		"Tree Pack/Tree1/tmp_trunk_skin_22_dot3.tex.meta"
+		"Tree Pack/Tree1/tree1.mdl.meta"
+		"Tree Pack/Tree1/Tree1_Prefab.pfb.meta"
+		"Tree Pack/Tree2/tg3_3.mat.meta"
+		"Tree Pack/Tree2/tg3_3.tex.meta"
+		"Tree Pack/Tree2/tg3_3_dot3.tex.meta"
+		"Tree Pack/Tree2/tree2.mdl.meta"
+		"Tree Pack/Tree2/Tree2_Prefab.pfb.meta"
+		"Tree Pack/Tree2/ttsca4.mat.meta"
+		"Tree Pack/Tree2/ttsca4.tex.meta"
+		"Tree Pack/Tree2/ttsca4_dot3.tex.meta"
+		"Tree Pack/Tree3/tree3.mdl.meta"
+		"Tree Pack/Tree3/Tree3_Prefab.pfb.meta"
+		"Tree Pack/Tree3/tztrunk_13.mat.meta"
+		"Tree Pack/Tree3/tztrunk_13.tex.meta"
+		"Tree Pack/Tree3/tztrunk_13_dot3.tex.meta"
+		"Tree Pack/Tree3/wwwww.mat.meta"
+		"Tree Pack/Tree3/wwwww.tex.meta"
+		"Tree Pack/Tree3/wwwww_dot3.tex.meta"
+		"Tree Pack/Tree4/reallyreally_old.mat.meta"
+		"Tree Pack/Tree4/reallyreally_old.tex.meta"
+		"Tree Pack/Tree4/reallyreally_old_dot3.tex.meta"
+		"Tree Pack/Tree4/tmp_trunk_skin_15.mat.meta"
+		"Tree Pack/Tree4/tmp_trunk_skin_15.tex.meta"
+		"Tree Pack/Tree4/tmp_trunk_skin_15_dot3.tex.meta"
+		"Tree Pack/Tree4/tree4.mdl.meta"
+		"Tree Pack/Tree4/Tree4_Prefab.pfb.meta"
+		"Tree Pack/Tree5/t_skin12.mat.meta"
+		"Tree Pack/Tree5/t_skin12.tex.meta"
+		"Tree Pack/Tree5/t_skin12_dot3.tex.meta"
+		"Tree Pack/Tree5/tree5.mdl.meta"
+		"Tree Pack/Tree5/Tree5_Prefab.pfb.meta"
+		"Tree Pack/Tree5/wwwww.mat.meta"
+		"Tree Pack/Tree5/wwwww.tex.meta"
+		"Tree Pack/Tree5/wwwww_dot3.tex.meta"
+	}
+}
+WorkshopItem
+{
 	fileid=401648279
 	title="SkyBox Pack"
 	datemodified=1425320013
@@ -32,5 +121,56 @@ WorkshopItem
 		"Materials/Sky/SunSet.tex.meta"
 		"Materials/Sky/ThickCloudsWater.tex.meta"
 		"Materials/Sky/TropicakSunnyDay.tex.meta"
+	}
+}
+WorkshopItem
+{
+	fileid=531250897
+	title="Detail texture shader"
+	datemodified=1444231434
+	files
+	{
+		"diffuse+normal+specular+detail.shader"
+	}
+}
+WorkshopItem
+{
+	fileid=573407932
+	title="Ultra-HQ  Rock"
+	datemodified=1449859690
+	files
+	{
+		"Stone01.mat"
+		"stone01.mdl"
+		"stone01.phy"
+		"Stone01.tex"
+		"Stone01lowres.mat"
+		"stone01lowres.mdl"
+		"stone01lowres.phy"
+		"Stone01lowres.tex"
+		"Stone01.lowres.tex.meta"
+		"Stone01.mat.meta"
+		"stone01.mdl.meta"
+		"Stone01.tex.meta"
+		"Stone01lowres.mat.meta"
+		"stone01lowres.mdl.meta"
+		"Stone01lowres.tex.meta"
+	}
+}
+WorkshopItem
+{
+	fileid=605492557
+	title="Rock Formation"
+	datemodified=1453403894
+	files
+	{
+		"Diffuse03.tex"
+		"Diffuse04.tex"
+		"Normal03.tex"
+		"Normal04.tex"
+		"RockForm03.mat"
+		"RockForm04.mat"
+		"RockForm04.mdl"
+		"RocksForm03.mdl"
 	}
 }

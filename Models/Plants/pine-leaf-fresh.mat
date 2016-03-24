@@ -14,6 +14,7 @@ mappingscale=1.00000000,1.00000000,1.00000000
 drawmode=-1
 
 shader="Shaders/Model/leaves.shader"
+shader1="Shaders/Model/Shadow/shadow+alphamask.shader"
 shader3="Shaders/Vegetation/groundplants.shader"
 shader4="Shaders/Vegetation/Shadow/groundplants.shader"
 texture0="./pine-leaf-fresh-diff.tex"

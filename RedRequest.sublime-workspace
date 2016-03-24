@@ -3,33 +3,104 @@
 	{
 		"selected_items":
 		[
+			[
+				"e",
+				"entity"
+			],
+			[
+				"World",
+				"World_01"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Server/RedServer.js",
+			"file": "Source/Player.cpp",
 			"settings":
 			{
-				"buffer_size": 1326,
+				"buffer_size": 11102,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Config/app.json",
+			"file": "Source/Misc/Inventory.cpp",
 			"settings":
 			{
-				"buffer_size": 82,
+				"buffer_size": 135,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Server/index.html",
+			"file": "Source/Misc/Inventory.h",
 			"settings":
 			{
-				"buffer_size": 142,
-				"line_ending": "Unix",
-				"name": "html"
+				"buffer_size": 263,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/Player.h",
+			"settings":
+			{
+				"buffer_size": 2901,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/WorldObjects/Tools/MonkeyWrench.cpp",
+			"settings":
+			{
+				"buffer_size": 2076,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/WorldObjects/Tools/MonkeyWrench.h",
+			"settings":
+			{
+				"buffer_size": 606,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/Worlds/World_01.cpp",
+			"settings":
+			{
+				"buffer_size": 827,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/Scene.cpp",
+			"settings":
+			{
+				"buffer_size": 3552,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/Scene.h",
+			"settings":
+			{
+				"buffer_size": 992,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/Misc/WorldObject.cpp",
+			"settings":
+			{
+				"buffer_size": 1760,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Source/Misc/WorldObject.h",
+			"settings":
+			{
+				"buffer_size": 1420,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -40,16 +111,20 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 352.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"Package Control: Install Package"
+			]
 		],
-		"width": 0.0
+		"width": 398.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 125.0,
 		"history":
 		[
 		]
@@ -66,17 +141,21 @@
 	"expanded_folders":
 	[
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Config",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Prefabs/Characters",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Tools",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Misc",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/WorldObjects",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/WorldObjects/Tools",
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Worlds"
 	],
 	"file_history":
 	[
+		"/opt/sublime_text/Packages/C++.sublime-settings",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Server/index.html",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Server/RedServer.js",
+		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Config/app.json",
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/config.json",
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Tools/BuildMatrixObject.h",
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.cpp",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Server/RedServer.js",
 		"/home/geldo/bios/devbox",
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Tools/BuildMatrixObject.cpp",
 		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Scene.h",
@@ -97,7 +176,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"find_in_files":
 	{
@@ -133,52 +212,54 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Server/RedServer.js",
+					"file": "Source/Player.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1326,
+						"buffer_size": 11102,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								684,
-								684
+								189,
+								189
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Config/app.json",
+					"file": "Source/Misc/Inventory.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 82,
+						"buffer_size": 135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								61,
-								61
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -189,25 +270,262 @@
 				},
 				{
 					"buffer": 2,
-					"file": "Server/index.html",
+					"file": "Source/Misc/Inventory.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 142,
+						"buffer_size": 263,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								79,
-								79
+								73,
+								73
 							]
 						],
 						"settings":
 						{
-							"auto_name": "html",
-							"syntax": "Packages/HTML/HTML.tmLanguage"
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Source/Player.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2901,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								537,
+								537
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Source/WorldObjects/Tools/MonkeyWrench.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2076,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1569,
+								1569
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Source/WorldObjects/Tools/MonkeyWrench.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 606,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								379,
+								379
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Source/Worlds/World_01.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 827,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								541,
+								541
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Source/Scene.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3552,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Source/Scene.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "Source/Misc/WorldObject.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1760,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1083,
+								1083
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 926.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "Source/Misc/WorldObject.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1420,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1391,
+								1391
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -255,7 +573,7 @@
 		"height": 0.0
 	},
 	"pinned_build_system": "",
-	"project": "RedRequest.sublime-project",
+	"project": "RedRequest.sublime-workspace",
 	"replace":
 	{
 		"height": 0.0

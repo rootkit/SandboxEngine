@@ -4,6 +4,7 @@
 #include "AppConfiguration.h"
 #include "Scene.h"
 #include "Worlds/World_01.h"
+#include <thread>
 
 #undef GetFileType
 
@@ -23,6 +24,8 @@ public:
     Leadwerks::Font* DefaultFont;
 
 	World_01* CurrentScene;
+
+    bool applicationQuit = false;
 
 	App();
 	virtual ~App();

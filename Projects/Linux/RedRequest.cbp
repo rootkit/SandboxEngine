@@ -5,6 +5,7 @@
 		<Option title="RedRequest" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="Source/;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="../../RedRequest.debug" prefix_auto="0" extension_auto="0" />
@@ -13,7 +14,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
+					<Add option="-pthread" />
 					<Add option="-DDEBUG" />
 					<Add option="-D_DEBUG" />
 					<Add directory="Source" />
@@ -23,6 +26,7 @@
 					<Add directory="Source/" />
 				</Compiler>
 				<Linker>
+					<Add option="-pthread" />
 					<Add library="$(LeadwerksPath)/Library/Linux/Debug/Leadwerks.a" />
 					<Add library="dl" />
 					<Add library="openal" />
@@ -135,7 +139,9 @@
 		<Unit filename="../../Source/Tools/MapObject.h" />
 		<Unit filename="../../Source/WorldObjects/Tools/MonkeyWrench.cpp" />
 		<Unit filename="../../Source/WorldObjects/Tools/MonkeyWrench.h" />
-		<Unit filename="../../Source/Worlds/World_01.cpp" />
+		<Unit filename="../../Source/Worlds/World_01.cpp">
+			<Option virtualFolder="Source/" />
+		</Unit>
 		<Unit filename="../../Source/Worlds/World_01.h" />
 		<Unit filename="../../Source/main.cpp" />
 		<Extensions>

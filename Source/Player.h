@@ -4,6 +4,7 @@
 #include "Leadwerks.h"
 #include "Scene.h"
 #include "Misc/WorldObject.h"
+#include "Misc/Inventory.h"
 class Player
 {
     public:
@@ -19,14 +20,18 @@ class Player
     protected:
         Scene* _scene;
     private:
+        //Inventory
+        class Inventory*              _inventory;
         //Physics
         Leadwerks::Shape*       _body;
         Leadwerks::Model*       _bodyModel;
         Leadwerks::Material*    _bodyModelMaterial;
         //Punch Physics
-        Leadwerks::Shape*       _punchShape;
-        Leadwerks::Model*       _punchModel;
         Leadwerks::Material*    _punchModelMaterial;
+        Leadwerks::Shape*       _punchShapeRight;
+        Leadwerks::Model*       _punchColliderModelRigth;
+        Leadwerks::Shape*       _punchShapeLeft;
+        Leadwerks::Model*       _punchColliderModelLeft;
         float                   _punching = false;
         float                   _freeToPunch = true;
         //Weapons
@@ -41,7 +46,7 @@ class Player
         //Crosshair
         Leadwerks::Texture*     _crosshair;
         Leadwerks::PickInfo     _pickinfo;
-        Leadwerks::Model*        _pickSphere;
+        Leadwerks::Model*       _pickSphere;
         //Mouse
         Leadwerks::Vec3*        _currentMousePosition;
         Leadwerks::Vec2*        _mouseDiference;
@@ -57,7 +62,7 @@ class Player
         float                   _strafeCurrentSpeed = 2;
         float                   _moveSpeed = 2;
         float                   _moveCurrentSpeed = 2;
-        float                   _jumpForce = 7;
+        float                   _jumpForce = 10;
         float                   _currentJumpForce = 0;
         bool                    _crouching = false;
         bool                    _running = false;
@@ -65,6 +70,7 @@ class Player
         Leadwerks::Vec3*        _cameraRotation;
         float                   _cameraTopAngle = -45;
         float                   _cameraBottomAngle = 80;
+        //Animation
         void _playAnimation(string animationName);
         void _loopAnimation();
 };

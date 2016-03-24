@@ -12,14 +12,34 @@ class WorldObject : public Leadwerks::Pivot
         void DrawContext();
         void SetPosition(Leadwerks::Vec3 position,bool global);
         void SetPosition(float x,float y,float z, bool global);
-        Leadwerks::Vec3 GetPosition(bool global);
-        string ObjectType = "";
-        Leadwerks::Entity* entity;
+
+        void SetName(string value);
+        void SetDescription(string value);
+        void SetInteractive(bool value);
+        void SetEquippably(bool value);
+        void SetType(string value);
+        void SetSubType(string value);
+
+        string GetDescription();
+        string GetName();
+        bool GetInteractive();
+        bool GetEquippably();
+        string GetType();
+        string GetSubType();
+
+        Leadwerks::Vec3 GetPosition(bool global);              
+        Leadwerks::Entity*      entity;
     protected:
-        class Scene* _scene;
-        Leadwerks::Vec3* _position;
+        class Scene*            _scene;
+        Leadwerks::Vec3*        _position;
         void SetScene(class Scene* scene);
     private:
+        bool                    _interactive = false;
+        bool                    _equippably = false;
+        string                  _type = "";  
+        string                  _subType = "";
+        string                  _name = "";
+        string                  _description = "";
 };
 
 #endif // WORLDOBJECT_H

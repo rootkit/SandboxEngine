@@ -1,0 +1,22 @@
+//Leadwerks Material File
+
+blendmode=0
+castshadows=1
+zsort=0
+cullbackfaces=0
+depthtest=1
+pickmode=1
+depthmask=1
+diffuse=0.588235319,0.588235319,0.588235319,1.00000000
+specular=0.501960814,0.501960814,0.501960814,0.501960814
+alwaysuseshader=0
+mappingscale=1.00000000,1.00000000,1.00000000
+drawmode=-1
+
+shader="Shaders/Model/leaves.shader"
+shader1="Shaders/Model/Shadow/shadow+alphamask.shader"
+shader3="Shaders/Vegetation/leaves.shader"
+shader4="Shaders/Vegetation/Shadow/leaves.shader"
+texture0="./oak_leaf_fall_d.tex"
+texture1="./oak_leaf_n.tex"
+texture2="./oak_leaf_spec.tex"

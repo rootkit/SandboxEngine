@@ -27,7 +27,6 @@ void WorldObject::SetScene(class Scene* scene)
     this->_scene = scene;
 }
 
-
 void WorldObject::SetPosition(Leadwerks::Vec3 position, bool global = false)
 {
     Leadwerks::Pivot::SetPosition(position,global);
@@ -48,6 +47,11 @@ Leadwerks::Vec3 WorldObject::GetPosition(bool global)
 void WorldObject::SetName(string value)
 {
 	this->_name = value;
+}
+
+void WorldObject::SetGUID(string value)
+{
+	this->_guid = value;
 }
 
 void WorldObject::SetDescription(string value)
@@ -73,6 +77,27 @@ void WorldObject::SetType(string value)
 void WorldObject::SetSubType(string value)
 {
 	this->_subType = value;
+}
+
+void WorldObject::SetHudIcon(string filename128, string filename64, string filename32)
+{
+	this->_hudIcon128 = Leadwerks::Texture::Load(filename128);
+	this->_hudIcon64 = Leadwerks::Texture::Load(filename64);
+	this->_hudIcon32 = Leadwerks::Texture::Load(filename32);
+}
+
+void WorldObject::Show()
+{
+	Leadwerks::Pivot::Show();
+	this->entity->Show();
+	this->_visible = true;
+}
+
+void WorldObject::Hide()
+{
+	Leadwerks::Pivot::Hide();
+	this->entity->Hide();
+	this->_visible = false;
 }
 
 bool WorldObject::GetInteractive()
@@ -103,4 +128,24 @@ string WorldObject::GetDescription()
 string WorldObject::GetName()
 {
 	return this->_name;
+}
+
+string WorldObject::GetGUID()
+{
+	return this->_guid;
+}
+
+Leadwerks::Texture* WorldObject::GetHudIcon128()
+{
+	return this->_hudIcon128;
+}
+
+Leadwerks::Texture* WorldObject::GetHudIcon64()
+{
+	return this->_hudIcon64;
+}
+
+Leadwerks::Texture* WorldObject::GetHudIcon32()
+{
+	return this->_hudIcon32;
 }

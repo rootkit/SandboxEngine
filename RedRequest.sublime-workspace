@@ -19,7 +19,7 @@
 			"file": "Source/Player.cpp",
 			"settings":
 			{
-				"buffer_size": 11102,
+				"buffer_size": 11033,
 				"line_ending": "Unix"
 			}
 		},
@@ -27,7 +27,7 @@
 			"file": "Source/Misc/Inventory.cpp",
 			"settings":
 			{
-				"buffer_size": 135,
+				"buffer_size": 1459,
 				"line_ending": "Unix"
 			}
 		},
@@ -35,7 +35,7 @@
 			"file": "Source/Misc/Inventory.h",
 			"settings":
 			{
-				"buffer_size": 263,
+				"buffer_size": 545,
 				"line_ending": "Unix"
 			}
 		},
@@ -43,7 +43,7 @@
 			"file": "Source/Player.h",
 			"settings":
 			{
-				"buffer_size": 2901,
+				"buffer_size": 2895,
 				"line_ending": "Unix"
 			}
 		},
@@ -51,7 +51,7 @@
 			"file": "Source/WorldObjects/Tools/MonkeyWrench.cpp",
 			"settings":
 			{
-				"buffer_size": 2076,
+				"buffer_size": 2251,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,7 +91,7 @@
 			"file": "Source/Misc/WorldObject.cpp",
 			"settings":
 			{
-				"buffer_size": 1760,
+				"buffer_size": 1933,
 				"line_ending": "Unix"
 			}
 		},
@@ -99,7 +99,7 @@
 			"file": "Source/Misc/WorldObject.h",
 			"settings":
 			{
-				"buffer_size": 1420,
+				"buffer_size": 1543,
 				"line_ending": "Unix"
 			}
 		}
@@ -138,15 +138,6 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Misc",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/WorldObjects",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/WorldObjects/Tools",
-		"/home/geldo/Documents/Leadwerks/Projects/RedRequest/Source/Worlds"
-	],
 	"file_history":
 	[
 		"/opt/sublime_text/Packages/C++.sublime-settings",
@@ -216,15 +207,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11102,
+						"buffer_size": 11033,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								189,
-								189
+								0,
+								0
 							]
 						],
 						"settings":
@@ -246,7 +237,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 135,
+						"buffer_size": 1459,
 						"regions":
 						{
 						},
@@ -259,7 +250,9 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -274,20 +267,22 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 263,
+						"buffer_size": 545,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73,
-								73
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -302,15 +297,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2901,
+						"buffer_size": 2895,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								537,
-								537
+								0,
+								0
 							]
 						],
 						"settings":
@@ -332,15 +327,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2076,
+						"buffer_size": 2251,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1569,
-								1569
+								0,
+								0
 							]
 						],
 						"settings":
@@ -482,15 +477,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1760,
+						"buffer_size": 1933,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1083,
-								1083
+								0,
+								0
 							]
 						],
 						"settings":
@@ -510,15 +505,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1420,
+						"buffer_size": 1543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1391,
-								1391
+								0,
+								0
 							]
 						],
 						"settings":

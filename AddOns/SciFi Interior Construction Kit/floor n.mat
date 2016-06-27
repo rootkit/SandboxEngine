@@ -1,0 +1,4 @@
+texture0=.\floor n.tex
+texture2=.\floor n_spec.tex
+lightingmode=1
+shader="Shaders/Model/diffuse.shader"

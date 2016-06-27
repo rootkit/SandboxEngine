@@ -45,11 +45,20 @@ void main(void)
 	#define SAMPLES 1
 #endif
 
-uniform sampler2DMS texture0;
-uniform sampler2DMS texture1;
-uniform sampler2DMS texture2;
-uniform sampler2DMS texture3;
-uniform sampler2DMS texture4;
+#if SAMPLES==0
+	uniform sampler2D texture0;
+	uniform sampler2D texture1;
+	uniform sampler2D texture2;
+	uniform sampler2D texture3;
+	uniform sampler2D texture4;
+#else
+	uniform sampler2DMS texture0;
+	uniform sampler2DMS texture1;
+	uniform sampler2DMS texture2;
+	uniform sampler2DMS texture3;
+	uniform sampler2DMS texture4;
+#endif
+
 uniform vec4 ambientlight;
 uniform vec2 buffersize;
 uniform vec2 camerarange;
@@ -82,12 +91,19 @@ void main(void)
 	
 	fragData0 = vec4(0.0);
 	
-	for (int i=0; i<SAMPLES; i++)
+	for (int i=0; i<max(1,SAMPLES); i++)
 	{
+#if SAMPLES==0
+		vec4 samplediffuse = texture(texture1,coord);
+		vec4 samplenormal = texture(texture2,coord);
+		emission = texture(texture3,coord);
+		vec4 materialdata = texture(texture3,coord);
+#else
 		vec4 samplediffuse = texelFetch(texture1,icoord,i);
 		vec4 samplenormal = texelFetch(texture2,icoord,i);
 		emission = texelFetch(texture3,icoord,i);
 		vec4 materialdata = texelFetch(texture3,icoord,i);
+#endif
 		ao=max(0.25,materialdata[1]);
 		int materialflags = int(samplenormal.a * 255.0 + 0.5);
 		bool uselighting = false;
@@ -102,6 +118,10 @@ void main(void)
 	//----------------------------------------------------------------------
 	//Calculate lighting
 	//----------------------------------------------------------------------	
-	fragData0 /= float(SAMPLES);
+	fragData0 /= float(max(1,SAMPLES));
+#if SAMPLES==0
+	gl_FragDepth = texture(texture0,coord).r;
+#else
 	gl_FragDepth = texelFetch(texture0,icoord,0).r;
+#endif
 }

@@ -17,11 +17,13 @@ class Player
         void Run();
         void Walk();
         void Punch();
+        void Interact();
     protected:
         Scene* _scene;
     private:
         //Inventory
-        class Inventory*              _inventory;
+        class Inventory*        _inventory;
+        Leadwerks::Sound*       _pickSound;
         //Physics
         Leadwerks::Shape*       _body;
         Leadwerks::Model*       _bodyModel;
@@ -47,6 +49,7 @@ class Player
         Leadwerks::Texture*     _crosshair;
         Leadwerks::PickInfo     _pickinfo;
         Leadwerks::Model*       _pickSphere;
+        WorldObject*            _interactingObject;
         //Mouse
         Leadwerks::Vec3*        _currentMousePosition;
         Leadwerks::Vec2*        _mouseDiference;

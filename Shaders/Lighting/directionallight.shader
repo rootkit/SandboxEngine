@@ -48,11 +48,20 @@ void main(void)
 #define KERNELF float(KERNEL)
 #define GLOSS 10.0
 
-uniform sampler2DMS texture0;//depth
-uniform sampler2DMS texture1;//diffuse.rgba
-uniform sampler2DMS texture2;//normal.xyz, diffuse.a
-uniform sampler2DMS texture3;//specular, ao, flags, diffuse.a
-uniform sampler2DMS texture4;//emission.rgb, diffuse.a
+#if SAMPLES==0
+	uniform sampler2D texture0;//depth
+	uniform sampler2D texture1;//diffuse.rgba
+	uniform sampler2D texture2;//normal.xyz, diffuse.a
+	uniform sampler2D texture3;//specular, ao, flags, diffuse.a
+	uniform sampler2D texture4;//emission.rgb, diffuse.a
+#else
+	uniform sampler2DMS texture0;//depth
+	uniform sampler2DMS texture1;//diffuse.rgba
+	uniform sampler2DMS texture2;//normal.xyz, diffuse.a
+	uniform sampler2DMS texture3;//specular, ao, flags, diffuse.a
+	uniform sampler2DMS texture4;//emission.rgb, diffuse.a
+#endif
+
 uniform sampler2DShadow texture5;//shadowmap
 
 /* Possible future optimization:
@@ -159,16 +168,23 @@ void main(void)
 	
 	fragData0 = vec4(0.0);
 
-	for (int i=0; i<SAMPLES; i++)
+	for (int i=0; i<max(1,SAMPLES); i++)
 	{
 		//----------------------------------------------------------------------
 		//Retrieve data from gbuffer
 		//----------------------------------------------------------------------
+#if SAMPLES==0
+		depth = 		texture(texture0,coord).x;
+		diffuse = 		texture(texture1,coord);
+		normaldata =	texture(texture2,coord);
+		emission = 		texture(texture3,coord);
+#else
 		depth = 		texelFetch(texture0,icoord,i).x;
 		diffuse = 		texelFetch(texture1,icoord,i);
-		normaldata =		texelFetch(texture2,icoord,i);
-		normal = 		normalize(normaldata.xyz*2.0-1.0);
+		normaldata =	texelFetch(texture2,icoord,i);
 		emission = 		texelFetch(texture3,icoord,i);
+#endif
+		normal = 			normalize(normaldata.xyz*2.0-1.0);
 		specularity =		emission.a;
 		materialflags = 	int(normaldata.a * 255.0 + 0.5);
 		uselighting =		false;
@@ -305,6 +321,6 @@ void main(void)
 		fragData0 += sampleoutput * 1.0;
 	}
 	
-	fragData0 /= float(SAMPLES);
+	fragData0 /= float(max(1,SAMPLES));
 	gl_FragDepth = depth;
 }

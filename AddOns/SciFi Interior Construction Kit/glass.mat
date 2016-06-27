@@ -1,0 +1,19 @@
+//Leadwerks Material File
+
+blendmode=0
+castshadows=0
+zsort=0
+cullbackfaces=0
+depthtest=1
+depthmask=1
+diffuse=0.0823529437,0.541176498,1.00000000,1.00000000
+specular=0.501960814,0.501960814,0.501960814,0.501960814
+alwaysuseshader=0
+mappingscale=1.00000000,1.00000000,1.00000000
+drawmode=-1
+
+shader="shaders/model/transparent.shader"
+texture0="./glass.tex"
+texture1="./glass_nrm.tex"
+texture2="./glass_spec.tex"
+texture5="./reflectionmap (2).tex"

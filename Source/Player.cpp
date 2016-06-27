@@ -5,7 +5,8 @@ Player::Player(class Scene* scene)
 {
     this->_scene = scene;
     ///Creating Inventory Object
-    this->_inventory = new Inventory();
+    this->_inventory = new Inventory(scene);
+    this->_pickSound = Leadwerks::Sound::Load("Sound/Interaction/switch12.wav");
     ///Creating Mouse Vectors
     this->_currentMousePosition = new Leadwerks::Vec3();
     this->_mouseDiference = new Leadwerks::Vec2();
@@ -88,7 +89,28 @@ Player::Player(class Scene* scene)
 
 Player::~Player()
 {
-    //dtor
+    delete _inventory;
+    delete _pickSound;
+    delete _body;
+    delete _bodyModel;
+    delete _bodyModelMaterial;
+    delete _punchModelMaterial;
+    delete _punchShapeRight;
+    delete _punchColliderModelRigth;
+    delete _punchShapeLeft;
+    delete _punchColliderModelLeft;
+    delete _weapon;
+    delete _weaponModel;
+    delete _crosshair;
+    delete _pickSphere;
+    delete _interactingObject;
+    delete _currentMousePosition;
+    delete _mouseDiference;
+    delete _mouseCenter;
+    delete _playerMovement;
+    delete _playerPosition;
+    delete _playerPivot;
+    delete _cameraRotation;
 }
 
 void Player::Update()
@@ -154,6 +176,10 @@ void Player::Update()
 
 void Player::InputUpdate()
 {
+    this->_inventory->InputUpdate();
+
+    if(this->_inventory->IsVisible())
+        return;
 
     this->_currentMousePosition = new Leadwerks::Vec3(this->_scene->window->GetMousePosition().x,this->_scene->window->GetMousePosition().y,this->_scene->window->GetMousePosition().z);
     this->_mouseDiference->x = this->_currentMousePosition->x - this->_mouseCenter->x;
@@ -192,6 +218,10 @@ void Player::InputUpdate()
     ///Punch
     if(this->_scene->window->MouseHit(1))
         this->Punch();
+
+    ///Interact
+    if(this->_scene->window->KeyHit(Leadwerks::Key::E))
+        this->Interact();
 }
 
 
@@ -207,16 +237,22 @@ void Player::DrawContext()
        try{
             WorldObject* _worldObject = dynamic_cast<WorldObject*>(this->_pickinfo.entity->GetChild(0));
 
-            if(_worldObject != NULL)                
-                this->_scene->context->DrawText("PICK INFO: " + _worldObject->GetName(),0,200);
-            else
-                this->_scene->context->DrawText("PICK INFO: NONE",0,200);
+            if(_worldObject != NULL){
+                //this->_scene->context->DrawText("PICK INFO: " + _worldObject->GetName(),0,200);
+                this->_interactingObject = _worldObject;
+            }
+            else{
+                //this->_scene->context->DrawText("PICK INFO: NONE",0,200);
+                this->_interactingObject = NULL;
+            }
 
         }catch(int e){
-            this->_scene->context->DrawText("PICK INFO: NONE",0,200);
+            //this->_scene->context->DrawText("PICK INFO: NONE",0,200);
+            this->_interactingObject = NULL;
         }
     }
-    //this->_scene->context->DrawText("PICK INFO: " + boost::lexical_cast<int>(this->_pickinfo.entity->script->Instance().int ),0,0);
+
+    this->_inventory->DrawContext();
 }
 
 void Player::_playAnimation(string animationName)
@@ -277,4 +313,13 @@ void Player::Punch()
                 this->_playAnimation("PunchSecondary");
             }
         }
+}
+
+void Player::Interact()
+{
+    if(this->_interactingObject != NULL){
+        this->_inventory->AddItem(this->_interactingObject);
+        this->_pickSound->Play();
+        this->_interactingObject->Hide();
+    }
 }

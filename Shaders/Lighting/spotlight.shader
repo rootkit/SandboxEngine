@@ -69,11 +69,20 @@ void main(void)
 #define KERNELF float(KERNEL)
 #define GLOSS 10.0
 
-uniform sampler2DMS texture0;
-uniform sampler2DMS texture1;
-uniform sampler2DMS texture2;
-uniform sampler2DMS texture3;
-uniform sampler2DMS texture4;
+#if SAMPLES==0
+	uniform sampler2D texture0;
+	uniform sampler2D texture1;
+	uniform sampler2D texture2;
+	uniform sampler2D texture3;
+	uniform sampler2D texture4;
+#else
+	uniform sampler2DMS texture0;
+	uniform sampler2DMS texture1;
+	uniform sampler2DMS texture2;
+	uniform sampler2DMS texture3;
+	uniform sampler2DMS texture4;
+#endif
+
 uniform sampler2DShadow texture5;//shadowmap
 uniform vec2 lightconeangles;
 uniform vec2 lightconeanglescos;
@@ -144,16 +153,24 @@ void main(void)
 	fragData0 = vec4(0.0);
 	bool uselighting = false;
 	
-	for (int i=0; i<SAMPLES; i++)
+	for (int i=0; i<max(1,SAMPLES); i++)
 	{
 		//----------------------------------------------------------------------
 		//Retrieve data from gbuffer
 		//----------------------------------------------------------------------
+#if SAMPLES==0
 		float depth = 		texelFetch(texture0,icoord,i).x;
 		vec4 diffuse = 		texelFetch(texture1,icoord,i);
 		vec4 normaldata =	texelFetch(texture2,icoord,i);
-		vec3 normal = 		normalize(normaldata.xyz*2.0-1.0);
 		vec4 emission = 	texelFetch(texture3,icoord,i);
+#else		
+		float depth = 		texelFetch(texture0,icoord,i).x;
+		vec4 diffuse = 		texelFetch(texture1,icoord,i);
+		vec4 normaldata =	texelFetch(texture2,icoord,i);
+		vec4 emission = 	texelFetch(texture3,icoord,i);
+#endif
+		
+		vec3 normal = 		normalize(normaldata.xyz*2.0-1.0);
 		float specularity =	emission.a;
 		int materialflags = 	int(normaldata.a*255.0+0.5);
 		if ((1 & materialflags)!=0) uselighting=true;
@@ -237,5 +254,5 @@ void main(void)
 	//----------------------------------------------------------------------	
 	if (!uselighting) discard;
 	
-	fragData0 /= float(SAMPLES);
+	fragData0 /= float(max(1,SAMPLES));
 }

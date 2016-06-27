@@ -2,6 +2,7 @@ Script.movespeed=50.0
 Script.pickradius=0
 Script.damage=5
 Script.lifetime=1000
+Script.enabled=false--bool "Enabled"
 
 function Script:Start()
 	self.sound={}	
@@ -10,6 +11,12 @@ function Script:Start()
 	self.sound.ricochet[2]=Sound:Load("Sound/Ricochet/bullet_impact_dirt_02.wav")
 	self.sound.ricochet[3]=Sound:Load("Sound/Ricochet/bullet_impact_dirt_03.wav")
 	self.starttime=Time:GetCurrent()
+end
+
+function Script:Enable()--in
+	if self.enabled==false then
+		self.enabled=true
+	end
 end
 
 function Script:FindScriptedParent(entity,func)
@@ -25,6 +32,7 @@ function Script:FindScriptedParent(entity,func)
 end
 
 function Script:UpdateWorld()
+	if self.enabled==false then return end
 	if self.entity:Hidden() then return end
 	local pickinfo=PickInfo()	
 	local pos = self.entity:GetPosition(true)

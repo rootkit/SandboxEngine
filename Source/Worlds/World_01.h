@@ -22,6 +22,12 @@ class World_01 : public Scene
     	FloorObject* _floorObject;
     	BuildMatrixObject* _buildMatrixObject;
     	MonkeyWrench* _monkeyWrench;
+        MonkeyWrench* _monkeyWrench_1;
+        MonkeyWrench* _monkeyWrench_2;
+        MonkeyWrench* _monkeyWrench_3;
+        MonkeyWrench* _monkeyWrench_4;
+        MonkeyWrench* _monkeyWrench_5;
+        MonkeyWrench* _monkeyWrench_6;
 };
 
 #endif // WORLD_01_H

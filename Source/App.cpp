@@ -5,7 +5,17 @@ using namespace Leadwerks;
 
 App::App() : window(NULL), context(NULL), world(NULL), camera(NULL), appjson(NULL) {}
 
-App::~App() { delete world; delete window; }
+App::~App() {
+    delete world;
+    delete window;
+    delete context;
+    delete world;
+    delete camera;
+    delete appjson;
+    delete LoadingScreen;
+    delete DefaultFont;
+    delete CurrentScene;
+}
 
 void App::ShowLoading()
 {
@@ -45,6 +55,12 @@ bool App::Start()
 
 	//Create a world
 	this->world = World::Create();
+
+	//this->world->SetLightQuality(100);
+
+	//this->world->SetTessellationQuality(1);
+
+	//this->world->SetTerrainQuality(2);
 
 	//Hide the mouse cursor
 	this->window->HideMouse();

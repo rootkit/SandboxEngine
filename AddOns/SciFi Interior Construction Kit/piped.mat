@@ -1,0 +1,18 @@
+//Leadwerks Material File
+
+blendmode=0
+castshadows=1
+zsort=0
+cullbackfaces=1
+depthtest=1
+depthmask=1
+diffuse=0.819607854,0.831372559,0.870588243,1.00000000
+specular=0.501960814,0.501960814,0.501960814,0.501960814
+alwaysuseshader=0
+mappingscale=1.00000000,1.00000000,1.00000000
+drawmode=-1
+
+shader="shaders/model/diffuse+normal+specular.shader"
+texture0="./piped.tex"
+texture1="./piped_nrm.tex"
+texture2="./piped_spec.tex"

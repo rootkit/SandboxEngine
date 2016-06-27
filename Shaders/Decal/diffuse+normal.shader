@@ -148,9 +148,18 @@ uniform vec2 buffersize;
 uniform vec4 materialcolorspecular;
 uniform samplerCube texture15;
 uniform sampler2D texture0;
-uniform sampler2DMS texture5;// depth
 uniform sampler2D texture1;// normal map
-uniform sampler2DMS texture6;// normal
+
+uniform int Samples=1;
+
+//2D textures
+uniform sampler2D texture4;// depth
+uniform sampler2D texture5;// normal
+
+//MSAA textures
+uniform sampler2DMS texture6;// depth
+uniform sampler2DMS texture7;// normal
+
 uniform bool isbackbuffer;
 uniform mat4 projectioncameramatrix;
 uniform vec3 cameraposition;
@@ -179,8 +188,16 @@ vec4 ScreenPositionToWorldPosition(in vec2 texCoord)
 {
         float x = (texCoord.s / buffersize.x - 0.5) * 2.0;
         float y = (texCoord.t / buffersize.y - 0.5) * 2.0;
-        float z = texelFetch(texture5, ivec2(texCoord),gl_SampleID).r;
-        z = z / 0.5 - 1.0;
+		float z;
+		if (Samples==0)
+		{
+			z = texelFetch(texture4, ivec2(texCoord),0).r;
+		}
+		else
+		{
+			z = texelFetch(texture6, ivec2(texCoord),gl_SampleID).r;
+		}
+		z = z / 0.5 - 1.0;
         vec4 posProj = vec4(x,y,z,1.0);
         vec4 posView = inverse(projectioncameramatrix) * posProj;
         posView /= posView.w;
@@ -235,7 +252,15 @@ void main(void)
 	ivec2 icoord = ivec2(gl_FragCoord.xy);
 	if (isbackbuffer) icoord.y = int(buffersize.y) - icoord.y;
 	
-	depth = texelFetch(texture5,icoord,gl_SampleID).r;
+	if (Samples==0)
+	{
+		depth = texelFetch(texture4, icoord,0).r;
+	}
+	else
+	{
+		depth = texelFetch(texture6, icoord,gl_SampleID).r;
+	}
+	
 	worldcoord = vec4(gl_FragCoord.x/buffersize.x,-gl_FragCoord.y/buffersize.y,depth,gl_FragCoord.w);
 	worldcoord = inverse(projectioncameramatrix)*worldcoord;
 	screencoord=worldcoord.xyz;
@@ -248,8 +273,16 @@ void main(void)
 	if (screencoord.y>0.5) discard;
 	if (screencoord.z<-0.5) discard;
 	if (screencoord.z>0.5) discard;
+	
+	if (Samples==0)
+	{
+		normaldata = texelFetch(texture5, icoord,0);
+	}
+	else
+	{
+		normaldata = texelFetch(texture7, icoord,gl_SampleID);
+	}
 
-	normaldata = texelFetch(texture6,icoord,gl_SampleID);
 	screennormal = normalize(normaldata.xyz*2.0-1.0);
 	worldnormal = inverse(nmat) * screennormal;
 	

@@ -11,7 +11,21 @@ World_01::World_01(Leadwerks::Window* window,Context* context,World* world,Camer
 
     //_buildMatrixObject = AddBuildMatrixObject("", new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(2,2,2),new Leadwerks::Vec3(3.8399,3.8299,3.8399));
     this->_monkeyWrench = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench_1 = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench_2 = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench_3 = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench_4 = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench_5 = new MonkeyWrench(NULL,this);
+    this->_monkeyWrench_6 = new MonkeyWrench(NULL,this);
+
     this->_monkeyWrench->SetPosition(9,5,8,true);
+    this->_monkeyWrench_1->SetPosition(7,5,8,true);
+    this->_monkeyWrench_2->SetPosition(5,5,8,true);
+    this->_monkeyWrench_3->SetPosition(3,5,8,true);
+    this->_monkeyWrench_4->SetPosition(2,5,8,true);
+    this->_monkeyWrench_5->SetPosition(2,5,5,true);
+    this->_monkeyWrench_6->SetPosition(1,5,8,true);
+
 }
 
 World_01::~World_01()

@@ -10,6 +10,7 @@ Script.senseradius=2--float "Hearing Range"
 Script.teamid=2--choice "Team" "Neutral,Good,Bad"
 Script.attackdelay=300--int "Attack delay"
 Script.animspeedrun=0.04--float "Run anim speed"
+Script.projectileprefabpath="Prefabs/Projectiles/tracer.pfb"--path "Projectile" "Prefab (*.pfb):pfb
 Script.burstdelay=1000
 Script.optimumshootingdistance=10
 Script.burstcount=5
@@ -39,6 +40,10 @@ Script.shoot2sound=""--path "Fire 2 sound" "Wav file (*.wav):wav|Sound"
 Script.shoot3sound=""--path "Fire 3 sound" "Wav file (*.wav):wav|Sound"
 
 function Script:Start()
+	self.projectileprefab = Prefab:Load(self.projectileprefabpath)
+	if self.projectileprefab~=nil then
+		self.projectileprefab:Hide()
+	end
 	self.lastshoottime = math.random(0,self.burstdelay*1.25)
 	if self.entity:GetMass()==0 then
 		self.entity:SetMass(10)
@@ -94,6 +99,17 @@ function Script:Start()
 			light:SetShadowMode(0)	
 		end
 		self.muzzleflash:Hide()
+	end
+end
+
+function Script:Detach()
+	if self.projectileprefab~=nil then
+		self.projectileprefab:Release()
+		self.projectileprefab=nil
+	end
+	if self.muzzleflash~=nil then
+		self.muzzleflash:Release()
+		self.muzzleflash=nil
 	end
 end
 
@@ -401,9 +417,10 @@ function Script:UpdatePhysics()
 			end
 			if Time:GetCurrent()-self.lastshoottime>self.firetime then
 				self.lastshoottime=Time:GetCurrent()
-				local projectile=Prefab:Load("Prefabs/Projectiles/tracer.pfb")
-				if projectile~=nil then
+				if self.projectileprefab~=nil then
 					if self.muzzleflash then
+						local projectile = self.projectileprefab:Instance()
+						projectile:Show()
 						self.animationmanager:SetAnimationSequence("fire",0.05,100,1)
 						self.muzzleflash:EmitSound(self.sound.shoot[#self.sound.shoot])
 						self.muzzleflash:SetAngle(math.random(0,360))
@@ -411,6 +428,7 @@ function Script:UpdatePhysics()
 						projectile = projectile.script
 						projectile.owner = self
 						projectile.entity:SetPosition(self.muzzleflash:GetPosition(true))
+						if type(projectile.Enable)=="function" then projectile:Enable() end
 						local diff = ((self.target.entity:GetPosition(true)+Vec3(0,1.5,0))-self.muzzleflash:GetPosition(true)):Normalize()
 						projectile.entity:AlignToVector(diff)				
 						projectile.entity:Turn(Math:Random(-3,3),Math:Random(-3,3),0)

@@ -49,11 +49,20 @@ void main(void)
 #define KERNELF float(KERNEL)
 #define GLOSS 10.0
 
-uniform sampler2DMS texture0;
-uniform sampler2DMS texture1;
-uniform sampler2DMS texture2;
-uniform sampler2DMS texture3;
-uniform sampler2DMS texture4;
+#if SAMPLES==0
+	uniform sampler2D texture0;
+	uniform sampler2D texture1;
+	uniform sampler2D texture2;
+	uniform sampler2D texture3;
+	uniform sampler2D texture4;	
+#else
+	uniform sampler2DMS texture0;
+	uniform sampler2DMS texture1;
+	uniform sampler2DMS texture2;
+	uniform sampler2DMS texture3;
+	uniform sampler2DMS texture4;
+#endif
+
 uniform samplerCubeShadow texture5;//shadowmap
 uniform vec4 ambientlight;
 uniform vec2 buffersize;
@@ -151,16 +160,23 @@ void main(void)
 	
 	bool uselighting = false;
 
-	for (int i=0; i<SAMPLES; i++)
+	for (int i=0; i<max(1,SAMPLES); i++)
 	{
 		//----------------------------------------------------------------------
 		//Retrieve data from gbuffer
 		//----------------------------------------------------------------------
+#if SAMPLES==0
+		float depth = 		texture(texture0,coord).x;
+		vec4 diffuse = 		texture(texture1,coord);
+		vec4 normaldata =	texture(texture2,coord);
+		vec4 emission = 	texture(texture3,coord);
+#else
 		float depth = 		texelFetch(texture0,icoord,i).x;
 		vec4 diffuse = 		texelFetch(texture1,icoord,i);
 		vec4 normaldata =	texelFetch(texture2,icoord,i);
+		vec4 emission = 	texelFetch(texture3,icoord,i);		
+#endif
 		vec3 normal = 		normalize(normaldata.xyz*2.0-1.0);
-		vec4 emission = 	texelFetch(texture3,icoord,i);
 		float specularity =	emission.a;
 		int materialflags = int(normaldata.a*255.0+0.5);
 		if ((1 & materialflags)!=0) uselighting=true;
@@ -239,6 +255,6 @@ void main(void)
 	}
 	if (!uselighting) discard;
 
-	fragData0 /= SAMPLES;
+	fragData0 /= max(1,SAMPLES);
 	//fragData0=vec4(1.0,0.0,0.0,1.0);
 }

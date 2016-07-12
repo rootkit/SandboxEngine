@@ -61,7 +61,6 @@ void Scene::LoadMap(std::string mapFilename)
 	}
 
     ///SET CAMERA DEFAULT'S
-    this->camera->SetHDRMode(true);
     //  this->world->SetTessellationQuality(1);
     this->camera->SetPosition(PlayerStart->GetPosition(true).x,PlayerStart->GetPosition(true).y + 3,PlayerStart->GetPosition(true).z,true);
     std::string postefect_bloom = System::GetProperty("shaders","Shaders/PostEffects/bloom.lua");

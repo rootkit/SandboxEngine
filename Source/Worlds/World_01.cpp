@@ -5,7 +5,7 @@ World_01::World_01(Leadwerks::Window* window,Context* context,World* world,Camer
     : Scene(window,context,world,camera)
 {
     //ctor
-    this->LoadMap("Maps/World_01.map");
+    this->LoadMap("Maps/start.map");
 
     //_floorObject = new FloorObject(this);
 

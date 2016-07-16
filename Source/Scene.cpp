@@ -68,9 +68,9 @@ void Scene::LoadMap(std::string mapFilename)
     std::string postefect_hdr = System::GetProperty("shaders","Shaders/PostEffects/06_pp_hdr.lua");
     std::string postefect_fxaa = System::GetProperty("shaders","Shaders/PostEffects/99_pp_fxaa.lua");
 	//this->camera->AddPostEffect(postefect_bloom);
-	this->camera->AddPostEffect(postefect_fxaa);
-	this->camera->AddPostEffect(postefect_ssao);
-	this->camera->AddPostEffect(postefect_hdr);
+	//this->camera->AddPostEffect(postefect_fxaa);
+	//this->camera->AddPostEffect(postefect_ssao);
+	//this->camera->AddPostEffect(postefect_hdr);
 
 }
 

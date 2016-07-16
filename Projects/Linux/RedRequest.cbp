@@ -8,7 +8,7 @@
 		<Option virtualFolders="Source/;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../RedRequest.debug" prefix_auto="0" extension_auto="0" />
+				<Option output="../../RedRequest" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../" />
 				<Option object_output="../../" />
 				<Option type="1" />

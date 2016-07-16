@@ -4479,7 +4479,7 @@
 1461459454 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Misc/InventoryItem.cpp
 	"InventoryItem.h"
 
-1468297430 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/App.cpp
+1468377303 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/App.cpp
 	"App.h"
 
 1458182463 /home/geldo/Documents/Leadwerks/RedRequest/Source/App.h
@@ -4582,10 +4582,10 @@
 1468296741 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/WorldObjects/Tools/MonkeyWrench.cpp
 	"MonkeyWrench.h"
 
-1468298256 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/Worlds/World_01.cpp
+1468300227 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/Worlds/World_01.cpp
 	"World_01.h"
 
-1466455577 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Leadwerks.h
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Leadwerks.h
 	"OpenGL.h"
 	"Libraries/zlib-1.2.5/contrib/minizip/zip.h"
 	"Libraries/zlib-1.2.5/contrib/minizip/unzip.h"
@@ -4726,7 +4726,6 @@
 	"Classes/Object.h"
 	"Classes/Heightfield.h"
 	"Classes/Event.h"
-	"Classes/EventQueue.h"
 	"Classes/Vertex.h"
 	"Classes/Character.h"
 	"Classes/PickInfo.h"
@@ -4774,6 +4773,7 @@
 	"Classes/Interpreter.h"
 	"Classes/NavGeom.h"
 	"Classes/NavPath.h"
+	"Classes/Mouse.h"
 	"Classes/NavMesh.h"
 	"Classes/NavTile.h"
 	"Classes/NavMeshDebugger.h"
@@ -4783,6 +4783,8 @@
 	"Classes/Channel.h"
 	"Classes/Vehicle.h"
 	"Classes/ModelFactory.h"
+	"Classes/GUI.h"
+	"Classes/Widget.h"
 	"Classes/Factories/File/FileFactory.h"
 	"Classes/Factories/File/PackageFactory.h"
 	"Classes/Entities/Bone.h"
@@ -4804,22 +4806,12 @@
 	"Classes/Entities/BuildTerrainPatches.h"
 	"Classes/Entities/Vegetation.h"
 	"Classes/Entities/Probe.h"
-	"Classes/GUI/GUI.h"
-	"Classes/GUI/Widget.h"
-	"Classes/GUI/Button.h"
-	"Classes/GUI/TextButton.h"
-	"Classes/GUI/Slider.h"
-	"Classes/GUI/ChoiceBox.h"
-	"Classes/GUI/Label.h"
-	"Classes/GUI/Panel.h"
 	"Classes/Entities/Light/SpotLight.h"
 	"Classes/Entities/Light/PointLight.h"
 	"Classes/Entities/Light/DirectionalLight.h"
-	"Classes/Win32.Window.h"
-	"Classes/MacOS.Window.h"
-	"Classes/iOS.Window.h"
-	"Classes/Android.Window.h"
-	"Classes/Linux.Window.h"
+	"Classes/Window.win32.h"
+	"Classes/Window.macos.h"
+	"Classes/Window.linux.h"
 	"Classes/Drivers/Graphics/GraphicsDriver.h"
 	"Classes/Drivers/Physics/PhysicsDriver.h"
 	"Classes/Drivers/Network/NetworkDriver.h"
@@ -5385,7 +5377,7 @@
 1440864614 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Math/Vec4.h
 	"Math3D.h"
 
-1432082715 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Math/iVec2.h
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Math/iVec2.h
 	"Math3D.h"
 
 1424338748 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Math/iVec3.h
@@ -5455,7 +5447,7 @@
 1466455561 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Steamworks.h
 	"../Leadwerks.h"
 
-1424338746 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Key.h
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Key.h
 	"../../Leadwerks.h"
 
 1424338751 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Initializer.h
@@ -5508,8 +5500,7 @@
 1424338746 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Heightfield.h
 	"../Leadwerks.h"
 
-1440864611 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Event.h
-	"../Leadwerks.h"
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Event.h
 
 1440864613 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/EventQueue.h
 	"../Leadwerks.h"
@@ -5550,7 +5541,7 @@
 1424338733 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/ComponentBase.h
 	"../Leadwerks.h"
 
-1466455561 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Component.h
+1468368842 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Component.h
 	"../Leadwerks.h"
 
 1466455561 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Shader.h
@@ -5611,7 +5602,7 @@
 1451502318 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Buffer.h
 	"../Leadwerks.h"
 
-1451502318 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Context.h
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Context.h
 	"../Leadwerks.h"
 
 1424338726 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/CustomContext.h
@@ -6053,6 +6044,42 @@
 1424338741 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Drivers/Sound/OpenAL/Classes/OpenALSource.h
 	"../OpenALSoundDriver.h"
 
-1468297728 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/Scene.cpp
+1468302256 source:/home/geldo/Documents/Leadwerks/RedRequest/Source/Scene.cpp
 	"Scene.h"
+
+1468368842 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Mouse.h
+
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/GUI.h
+	"../Leadwerks.h"
+
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Widget.h
+	"../Leadwerks.h"
+
+1468368841 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Window.win32.h
+	"../Leadwerks.h"
+	<windows.h>
+	<objidl.h>
+	<algorithm>
+	<gdiplus.h>
+	<wingdi.h>
+	<wchar.h>
+	<list>
+	<stdlib.h>
+	<Shellapi.h>
+	<string>
+
+1468368853 /home/geldo/Documents/Leadwerks/RedRequest/Leadwerks/Include/Classes/Window.linux.h
+	<algorithm>
+	<cstring>
+	<stdio.h>
+	<string>
+	<vector>
+	<list>
+	<stdlib.h>
+	<limits.h>
+	<X11/X.h>
+	<X11/keysym.h>
+	<X11/Xatom.h>
+	"Event.h"
+	"OpenGL.h"
 

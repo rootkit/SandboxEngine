@@ -3,7 +3,7 @@ import "Scripts/Functions/ReleaseTableObjects.lua"
 Script.health = 100		--float "Health"
 Script.maxHealth = 100		--float "Max Health"
 Script.mouseSensitivity = 15 	--float "Mouse sensitivity"
-Script.camSmoothing = 	4 	--float "Cam smoothing"
+Script.camSmoothing = 	2 	--float "Cam smoothing" 
 Script.moveSpeed = 2.5 		--float "Move Speed"
 Script.speedMultiplier = 1.5 	--float "Run Multiplier"
 Script.strafeSpeed = 4 		--float "Strafe Speed"
@@ -47,7 +47,7 @@ function Script:CycleWeapon(direction)
 			for n,weapon in pairs(self.weapons) do
 				self:SelectWeapon(n)
 				return
-			end
+			end		
 		end
 	else
 		for n,weapon in pairs(self.weapons) do
@@ -60,8 +60,8 @@ function Script:CycleWeapon(direction)
 			prevweapon=n
 		end
 		if prevweapon then
-			self:SelectWeapon(prevweapon)
-		end
+			self:SelectWeapon(prevweapon)		
+		end		
 	end
 end
 
@@ -71,7 +71,7 @@ function Script:AddWeapon(weapon)
 	end
 	if self.weapons[weapon.index]==nil then
 		self.weapons[weapon.index]=weapon
-		self.weapons[weapon.index].player = self
+		self.weapons[weapon.index].player = self 
 		self.weapons[weapon.index].entity:SetParent(self.weapontag)
 		self.weapons[weapon.index].entity:SetPosition(self.weapons[weapon.index].offset)
 		if self.weapons[weapon.index].rotation~=nil then
@@ -102,23 +102,23 @@ end
 
 --This function will be called when an entity is loaded in a map.  Use this for intitial setup stuff.
 function Script:Start()
-
+	
 	self.weapons={}
 	self.currentweaponindex=-1
-
+	
 	self.camRotation = self.entity:GetRotation(true)
-	self.weaponlowerangle=0
+	self.weaponlowerangle=0	
 
 	self.image={}
 	self.image.crosshair = Texture:Load("Materials/HUD/crosshair.tex")
 	self.image.hand = Texture:Load("Materials/HUD/use.tex")
-
+	
 	self.image.blood={}
 	self.image.blood[1]=Texture:Load("Materials/HUD/blood1.tex")
 	self.image.blood[2]=Texture:Load("Materials/HUD/blood2.tex")
 	self.image.blood[3]=Texture:Load("Materials/HUD/blood3.tex")
 	self.image.blood[4]=Texture:Load("Materials/HUD/blood4.tex")
-
+	
 	--Load shared sounds
 	self.sound={}--table to store sound in
 	self.sound.flashlight=Sound:Load("Sound/Player/flashlight_02_on.wav")
@@ -134,14 +134,14 @@ function Script:Start()
 	self.sound.footsteps.concrete.step[3] = Sound:Load("Sound/Footsteps/Concrete/step3.wav")
 	self.sound.footsteps.concrete.step[4] = Sound:Load("Sound/Footsteps/Concrete/step4.wav")
 	self.sound.footsteps.concrete.jump = Sound:Load("Sound/Footsteps/Concrete/jump.wav")
-
+	
 	self.bloodoverlay={}
 
 	self.entity:SetPickMode(0)
-
+	
 	--Set the type for this object to player
 	self.entity:SetKeyValue("type","player")
-
+	
 	local mass = self.entity:GetMass()
 	if self.entity:GetMass()==0 then Debug:Error("Player mass should be greater than 0.") end
 
@@ -149,17 +149,17 @@ function Script:Start()
 	self.camera = Camera:Create()
 	self.camera:SetFOV(70)
 	self.camera:SetRange(0.05,1000)
-	self.camera:SetMultisampleMode((System:GetProperty("multisample","1")))
-
+	--self.camera:SetMultisampleMode((System:GetProperty("multisample","1")))
+	
 	--Set the camera's rotation to match the player
 	self.camera:SetRotation(self.entity:GetRotation(true))
-
+	
 	--Set the camera position at eye height
 	self.camera:SetPosition(self.entity:GetPosition(true)+Vec3(0,self.eyeheight,0))
-
+	
 	--Create listener
-	self.listener = Listener:Create(self.camera)
-
+	self.listener = Listener:Create(self.camera)	
+	
 	--Create flashlight
 	self.flashlight = SpotLight:Create()
 	self.flashlight:SetParent(self.camera,false)
@@ -170,10 +170,19 @@ function Script:Start()
 	if self.flashlighton==false then
 		self.flashlight:Hide()
 	end
-
+	
 	--Load the default weapon, if one is set
 	self.weapontag = Pivot:Create(self.camera)
-
+	
+	--Hitbox for bullets
+	self.entity:SetCollisionType(Collision.Character)
+	local hitbox = Model:Box(0.5,1.8,0.5)
+	hitbox:SetPosition(self.entity:GetPosition())
+	hitbox:Translate(0,0.9,0)
+	hitbox:SetParent(self.entity,true)	
+	hitbox:SetCollisionType(Collision.Prop)
+	hitbox:SetShadowMode(0)
+	
 	---------------------------------------------------------------------------
 	--We want the player model visible in the editor, but invisible in the game
 	--We can achieve this by creating a material, setting the blend mode to make
@@ -182,13 +191,14 @@ function Script:Start()
 	local material = Material:Create()
 	material:SetBlendMode(5)--Blend.Invisible
 	self.entity:SetMaterial(material)
+	hitbox:SetMaterial(material)
 	material:Release()
 	self.entity:SetShadowMode(0)
-
+	
 	local window = Window:GetCurrent()
 	local context = Context:GetCurrent()
 	window:SetMousePosition(Math:Round(context:GetWidth()/2), Math:Round(context:GetHeight()/2))
-
+	
 	self.camera:SetRotation(self.camRotation)
 
 	if self.weaponfile~="" then
@@ -233,7 +243,7 @@ function Script:Hurt(damage,distributorOfPain)
 		local n=1
 		blood.texture=self.image.blood[math.random(1,4)]
 		blood.intensity=1
-		table.insert(self.bloodoverlay,blood)
+		table.insert(self.bloodoverlay,blood)		
 		if self.bloodindex>4 then self.bloodindex=1 end
 		if self.health<=0 then
 			self:Kill()
@@ -289,14 +299,14 @@ end
 
 function Script:UpdateWorld()
 	local currenttime = Time:GetCurrent()
-
+	
 	if self.lastweaponhittesttime==nil then self.lastweaponhittesttime=0 end
 	if currenttime - self.lastweaponhittesttime>100 then
 		self.lastweaponhittesttime=currenttime
 		local pickinfo=PickInfo()
 		local p1 = Transform:Point(0,0,0,self.camera,nil)
 		local p2 = Transform:Point(0,0,0.6,self.camera,nil)
-		local pickmode = self.entity:GetPickMode()
+		local pickmode = self.entity:GetPickMode()	
 		self.entity:SetPickMode(0)
 		--if self.entity.world:Pick(p1,p2,pickinfo,0.25) then
 		--	self.weaponlowered=true
@@ -312,17 +322,17 @@ function Script:UpdateWorld()
 	end
 	self.weaponlowerangle = math.max(0,math.min(self.weaponlowerangle,90))
 	self.weapontag:SetRotation(self.weaponlowerangle,0,0)
-
+	
 	--Exit the function early if the player is dead
 	if self.health<=0 then return end
-
+	
 	local window = Window:GetCurrent()
 	local context=Context:GetCurrent()
-
+	
 	if window:KeyHit(Key.P) then
 		self.camera:SetDebugPhysicsMode(true)
 	end
-
+	
 	if self.isairborne==true then
 		if self.entity:GetAirborne()==false then
 			if self.weapons[self.currentweaponindex]~=nil then
@@ -331,13 +341,13 @@ function Script:UpdateWorld()
 		end
 	end
 	self.isairborne = self.entity:GetAirborne()
-
+	
 	--Mouse look
 	self.currentMousePos = window:GetMousePosition()
 	window:SetMousePosition(Math:Round(context:GetWidth()/2), Math:Round(context:GetHeight()/2))
 	self.currentMousePos.x = Math:Round(self.currentMousePos.x)
 	self.currentMousePos.y = Math:Round(self.currentMousePos.y)
-
+	
 	if self.mousezpos==nil then self.mousezpos=0 end
 	if self.currentMousePos.z~=self.mousezpos then
 		if self.weapons[self.currentweaponindex] then
@@ -355,27 +365,27 @@ function Script:UpdateWorld()
 			self.mousezpos=self.currentMousePos.z
 		end
 	end
-
+	
 	self.mouseDifference.x = Math:Curve(self.currentMousePos.x - Math:Round(context:GetWidth()/2),self.mouseDifference.x,3)
 	self.mouseDifference.y = Math:Curve(self.currentMousePos.y - Math:Round(context:GetHeight()/2),self.mouseDifference.y,3)
 	self.camRotation.x = Math:Clamp(self.camRotation.x + self.mouseDifference.y / self.mouseSensitivity,-90,90)
 	self.camRotation.y = self.camRotation.y + (self.mouseDifference.x / self.mouseSensitivity)
-
+	
 	--Adjust the view shake
 	self.hurtoffset.x = Math:Inc(0,self.hurtoffset.x,2*Time:GetSpeed())
 	self.hurtoffset.y = Math:Inc(0,self.hurtoffset.y,2*Time:GetSpeed())
 	self.smoothedhurtoffset.x = Math:Curve(self.hurtoffset.x,self.smoothedhurtoffset.x,3)
 	self.smoothedhurtoffset.y = Math:Curve(self.hurtoffset.y,self.smoothedhurtoffset.y,3)
-
+	
 	--Set the camera angle
 	self.camera:SetRotation(self.camRotation+self.smoothedhurtoffset)
-
-	--Picking and usage
+	
+	--Picking and usage 
 	local pickInfo = PickInfo()
-
+	
 	--Raycast Pick that is being send from the camera in to the world
 	self.canUse = false
-
+	
 	local fire = false
 	local currentime = Time:GetCurrent()
 	if self.carryingEntity==nil then
@@ -393,7 +403,7 @@ function Script:UpdateWorld()
 			end
 		end
 	end
-
+	
 	--Fire weapon
 	if self.carryingEntity==nil then
 		if fire then
@@ -405,7 +415,7 @@ function Script:UpdateWorld()
 			end
 		end
 	end
-
+	
 	--Throw object if holding one
 	if self.carryingEntity then
 		if window:MouseHit(1) then
@@ -414,7 +424,7 @@ function Script:UpdateWorld()
 			self:DropEntityCarrying()
 		end
 	end
-
+	
 	if window:KeyHit(Key.R) then
 		if self.weapons[self.currentweaponindex]~=nil then
 			if type(self.weapons[self.currentweaponindex].CanReload)=="function" then
@@ -425,27 +435,27 @@ function Script:UpdateWorld()
 			end
 		end
 	end
-
+	
 	if window:KeyHit(Key.E) then
 		if self.carryingEntity then
 			self:DropEntityCarrying()
 		else
 			local p0 = self.camera:GetPosition(true)
 			local p1 = Transform:Point(0,0,self.useDistance,self.camera,nil)
-			if self.entity.world:Pick(p0,p1, pickInfo, 0, true) then
-
+			if self.entity.world:Pick(p0,p1, pickInfo, 0, true) then 
+				
 				--Looks for any entity in the hierarchy that has a "Use" function
 				local usableentity = self:FindUsableEntity(pickInfo.entity)
-
+				
 				if usableentity~=nil then
-
+					
 					--Use the object, whatever it may be
 					usableentity.script:Use(self)
-
-				else
+					
+				else					
 					if self.carryingEntity == nil then
 						mass = pickInfo.entity:GetMass()
-
+						
 						--Pick up object if it isn't too heavy
 						if mass>0 and mass<=self.maxcarryweight then
 							self.carryingEntity = pickInfo.entity
@@ -459,13 +469,13 @@ function Script:UpdateWorld()
 			end
 		end
 	end
-
+	
 	--The icon that shows that an object can be picked up or can be interacted with
 	--Amnesia fan, I see. :D
 	if self.carryingEntity == nil then
 		local p0 = self.camera:GetPosition(true)
 		local p1 = Transform:Point(0,0,self.useDistance,self.camera,nil)
-		if self.entity.world:Pick(p0,p1, pickInfo, 0, true) then
+		if self.entity.world:Pick(p0,p1, pickInfo, 0, true) then 
 			if self:FindUsableEntity(pickInfo.entity)~=nil then
 				self.canUse=true
 			else
@@ -484,7 +494,7 @@ function Script:DropEntityCarrying()
 end
 
 --This function plays footstep sounds in regular intervals as the player walks
-function Script:UpdateFootsteps()
+function Script:UpdateFootsteps() 
 	if self.lastfootsteptime==nil then self.lastfootsteptime=0 end
 	if self.input[0]~=0 or self.input[1]~=0 then
 		local speed = self.entity:GetVelocity():xz():Length()
@@ -508,9 +518,9 @@ function Script:UpdatePhysics()
 
 	--Exit the function early if the player is dead
 	if self.health<=0 then return end
-
+	
 	local window = Window:GetCurrent()
-
+	
 	--Fade out the screen blood
 	if self.bloodintensity~=nil then
 		if self.bloodintensity>0 then
@@ -518,7 +528,7 @@ function Script:UpdatePhysics()
 			self.bloodintensity = math.max(0,self.bloodintensity)
 		end
 	end
-
+	
 	--Update the footstep sounds when walking
 	self:UpdateFootsteps()
 
@@ -535,13 +545,13 @@ function Script:UpdatePhysics()
 	--Apply forces to make the carried object move the way we want
 	if self.carryingEntity then
 		local currentpos = self.carryingEntity:GetPosition(true)
-
+		
 		local pos = Transform:Point(self.carryposition,self.camera,nil)
 		local rot = Transform:Rotation(self.carryrotation,self.camera,nil)
-
+		
 		local maxdiff = 0.5
 		local diff = pos:DistanceToPoint(currentpos)
-
+		
 		--Drop the carryinItem when the distance between camera and item exceed the pickdistance
 		if diff>1.5 then
 			self:DropEntityCarrying()
@@ -549,12 +559,12 @@ function Script:UpdatePhysics()
 			if diff>maxdiff then
 				pos = currentpos + (pos-currentpos):Normalize()*maxdiff
 				diff = maxdiff
-			end
+			end			
 			self.carryingEntity:PhysicsSetPosition(pos.x,pos.y,pos.z,0.25)
 			self.carryingEntity:PhysicsSetRotation(rot,0.5)
 		end
 	end
-
+	
 	--Player Movement
 	local movex=0
 	local movez=0
@@ -564,11 +574,11 @@ function Script:UpdatePhysics()
 	if window:KeyDown(Key.S) then self.input[1]=self.input[1]-1 end
 	if window:KeyDown(Key.D) then self.input[0]=self.input[0]+1 end
 	if window:KeyDown(Key.A) then self.input[0]=self.input[0]-1 end
-
+	
 	local playerMovement = Vec3(0)
 	playerMovement.x = self.input[0] * self.moveSpeed
 	playerMovement.z = self.input[1] * self.moveSpeed
-
+	
 	--This prevents "speed hack" strafing due to lazy programming
 	if self.input[0]~=0 and self.input[1]~=0 then
 		playerMovement = playerMovement * 0.70710678
@@ -577,7 +587,7 @@ function Script:UpdatePhysics()
 	--if self.entity:GetAirborne() then
 	--	playerMovement = playerMovement * 0.2
 	--end
-
+	
 	--Check for running with shift and when not carrying anything
 	if self.carryingEntity == nil and window:KeyDown(Key.Shift) then
 		playerMovement.z = playerMovement.z  * self.speedMultiplier
@@ -587,7 +597,7 @@ function Script:UpdatePhysics()
 	local jump = 0
 	if window:KeyHit(Key.Space) and self:IsAirborne() == 0 then
 		jump = self.jumpForce
-
+		
 		self.sound.footsteps.concrete.jump:Play()
 
 		if self.weapons[self.currentweaponindex]~=nil then
@@ -597,26 +607,26 @@ function Script:UpdatePhysics()
 		--Give the player an extra boost when jumping
 		playerMovement = playerMovement * 1.6
 	end
-
+	
 	-- Check for crouching
 	--if App.window:KeyHit(Key.ControlKey) then
 	--	crouched = not crouched
 	--end
-
-	--With smoothing
+	
+	--With smoothing 
 	--Position camera at correct height and playerPosition
 	self.entity:SetInput(self.camRotation.y, playerMovement.z, playerMovement.x, jump , false, 1.0, 0.5, true)
 	local playerPos = self.entity:GetPosition()
 	local newCameraPos = self.camera:GetPosition()
 	--local playerTempHeight = ((self:IsCrouched() == 1) and crouchHeight or playerHeight)
 	newCameraPos = Vec3(playerPos.x, newCameraPos.y ,playerPos.z)
-
+	
 	if newCameraPos.y<playerPos.y + self.eyeheight then
 		newCameraPos.y = Math:Curve(playerPos.y + self.eyeheight, newCameraPos.y, self.camSmoothing)
 	else
 		newCameraPos.y = playerPos.y + self.eyeheight
 	end
-
+	
 	self.camera:SetPosition(newCameraPos)
 end
 
@@ -627,7 +637,7 @@ end
 
 function Script:PostRender(context)
 	context:SetBlendMode(Blend.Alpha)
-
+	
 	-----------------------------------------------------------------------
 	--Draw the blood overlay on the screen to indicate damage
 	local k,v
@@ -643,13 +653,13 @@ function Script:PostRender(context)
 		end
 	end
 	context:SetColor(1,1,1,1)
-
+	
 	if self.health>0 then
 		if self.canUse==true and self.carryingEntity == nil then
 			local pickUpX = math.floor((context:GetWidth() - self.image.hand:GetWidth()))/2
 			local pickUpY = math.floor((context:GetHeight() - self.image.hand:GetHeight()))/2
 			context:SetBlendMode(Blend.Alpha)
-			context:DrawImage(self.image.hand, pickUpX, pickUpY)
+			context:DrawImage(self.image.hand, pickUpX, pickUpY)	
 		else
 			if self.carryingEntity==nil then
 				if self.weapons[self.currentweaponindex]~=nil then
@@ -663,7 +673,7 @@ function Script:PostRender(context)
 			end
 		end
 	end
-
+	
 	context:SetBlendMode(1)
 	context:SetColor(0,0,0,0.5)
 	local indent=8
@@ -702,7 +712,7 @@ function Script:ReceiveHealth(healthPoints)--in
 	if self.health > self.maxHealth then
 		self.health = self.maxHealth
 	end
-
+	
 	--Call Health received output
 	self.component:CallOutputs("HealthReceived")
 end

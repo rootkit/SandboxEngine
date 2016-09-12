@@ -1456,7 +1456,7 @@
 	<string>
 	<stdexcept>
 
-1462236130 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.cpp
+1473661309 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.cpp
 	"App.h"
 
 1458818103 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/App.h
@@ -1484,8 +1484,7 @@
 1455969086 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/BuildMatrixBlockObject.h
 	"Leadwerks.h"
 
-1461112993 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.h
-	<boost/lexical_cast.hpp>
+1473661737 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.h
 	"Leadwerks.h"
 	"Scene.h"
 	"Misc/WorldObject.h"
@@ -1509,7 +1508,7 @@
 	"App.h"
 	<thread>
 
-1462080283 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Scene.cpp
+1468744022 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Scene.cpp
 	"Scene.h"
 
 1455969086 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/BuildMatrixBlockObject.cpp
@@ -1526,10 +1525,10 @@
 
 1455969086 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Tools/MapObject.h
 
-1461113307 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Worlds/World_01.cpp
+1473662411 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Worlds/World_01.cpp
 	"World_01.h"
 
-1462716992 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Leadwerks.h
+1468747382 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Leadwerks.h
 	"OpenGL.h"
 	"Libraries/zlib-1.2.5/contrib/minizip/zip.h"
 	"Libraries/zlib-1.2.5/contrib/minizip/unzip.h"
@@ -1615,6 +1614,8 @@
 	"Libraries/RecastNavigation/DetourCrowd/Include/DetourProximityGrid.h"
 	"Libraries/RecastNavigation/DetourTileCache/Include/DetourTileCache.h"
 	"Libraries/RecastNavigation/DetourTileCache/Include/DetourTileCacheBuilder.h"
+	"Libraries/glslang/glslang/Public/ShaderLang.h"
+	"Libraries/glslang/StandAlone/ResourceLimits.h"
 	<direct.h>
 	<io.h>
 	<Psapi.h>
@@ -1745,6 +1746,7 @@
 	"Classes/Entities/Terrain.h"
 	"Classes/Entities/BuildTerrainPatches.h"
 	"Classes/Entities/Vegetation.h"
+	"Classes/Entities/Probe.h"
 	"Classes/GUI/GUI.h"
 	"Classes/GUI/Widget.h"
 	"Classes/GUI/Button.h"
@@ -2213,7 +2215,7 @@
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Math/Vec4.h
 	"Math3D.h"
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Math/iVec2.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Math/iVec2.h
 	"Math3D.h"
 
 1455583160 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Math/iVec3.h
@@ -2280,10 +2282,10 @@
 1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/System.h
 	"Leadwerks.h"
 
-1462716986 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Steamworks.h
+1467583449 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Steamworks.h
 	"../Leadwerks.h"
 
-1455583171 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Key.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Key.h
 	"../../Leadwerks.h"
 
 1455583159 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Initializer.h
@@ -2292,10 +2294,10 @@
 1455583161 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Uniform.h
 	"../Leadwerks.h"
 
-1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Blend.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Blend.h
 	"../Leadwerks.h"
 
-1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Color.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Color.h
 	"../Leadwerks.h"
 
 1455583161 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/SortedObject.h
@@ -2336,10 +2338,10 @@
 1455583166 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Heightfield.h
 	"../Leadwerks.h"
 
-1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Event.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Event.h
 	"../Leadwerks.h"
 
-1455583166 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/EventQueue.h
+1468747383 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/EventQueue.h
 	"../Leadwerks.h"
 
 1455583172 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Vertex.h
@@ -2378,10 +2380,10 @@
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/ComponentBase.h
 	"../Leadwerks.h"
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Component.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Component.h
 	"../Leadwerks.h"
 
-1455583161 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Shader.h
+1467583445 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Shader.h
 	"../Leadwerks.h"
 
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Bank.h
@@ -2399,26 +2401,26 @@
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/PrefabBase.h
 	"../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Texture.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Texture.h
 	"../Leadwerks.h"
 
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Shape.h
 	"../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entity.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entity.h
 	"../Leadwerks.h"
 	<list>
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Body.h
+1467583442 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Body.h
 	"../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/World.h
+1467583449 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/World.h
 	"../Leadwerks.h"
 
-1455583150 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Batch.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Batch.h
 	"../Leadwerks.h"
 
-1462716992 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Surface.h
+1467583446 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Surface.h
 	"../Leadwerks.h"
 
 1455583165 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/OcclusionQuery.h
@@ -2439,7 +2441,7 @@
 1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Buffer.h
 	"../Leadwerks.h"
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Context.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Context.h
 	"../Leadwerks.h"
 
 1455583157 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/CustomContext.h
@@ -2451,7 +2453,7 @@
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/MaterialValue.h
 	"../Leadwerks.h"
 
-1455583159 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Material.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Material.h
 	"../Leadwerks.h"
 
 1455583154 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Chunk.h
@@ -2522,7 +2524,7 @@
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/WaterPlane.h
 	"../../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Camera.h
+1467583439 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Camera.h
 	"../../Leadwerks.h"
 
 1455583171 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Model.h
@@ -2534,10 +2536,10 @@
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Joint.h
 	"../../Leadwerks.h"
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Decal.h
+1467583444 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Decal.h
 	"../../Leadwerks.h"
 
-1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Light.h
+1467583444 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Light.h
 	"../../Leadwerks.h"
 
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Attractor.h
@@ -2567,28 +2569,28 @@
 1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Vegetation.h
 	"../../Leadwerks.h"
 
-1455583159 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/GUI.h
+1468747382 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/GUI.h
 	"../../Leadwerks.h"
 
-1455583159 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Widget.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Widget.h
 	"../../Leadwerks.h"
 
-1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Button.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Button.h
 	"../../Leadwerks.h"
 
-1455583164 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/TextButton.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/TextButton.h
 	"../../Leadwerks.h"
 
-1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Slider.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Slider.h
 	"../../Leadwerks.h"
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/ChoiceBox.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/ChoiceBox.h
 	"../../Leadwerks.h"
 
-1455583159 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Label.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Label.h
 	"../../Leadwerks.h"
 
-1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Panel.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/GUI/Panel.h
 	"../../Leadwerks.h"
 
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Light/SpotLight.h
@@ -2600,7 +2602,7 @@
 1455583164 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Light/DirectionalLight.h
 	"../../../Leadwerks.h"
 
-1455583172 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Win32.Window.h
+1468747382 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Win32.Window.h
 	"../Leadwerks.h"
 	<afx.h>
 	<windows.h>
@@ -2636,7 +2638,7 @@
 	<vector>
 	<map>
 
-1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Linux.Window.h
+1468747381 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Linux.Window.h
 	<string>
 	<stdio.h>
 	<stdlib.h>
@@ -2647,7 +2649,7 @@
 	<X11/Xatom.h>
 	"../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/GraphicsDriver.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/GraphicsDriver.h
 	"../../../Leadwerks.h"
 	"../../Font.h"
 
@@ -2660,7 +2662,7 @@
 1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Sound/SoundDriver.h
 	"../../../Leadwerks.h"
 
-1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2GraphicsDriver.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2GraphicsDriver.h
 	"../../../../Leadwerks.h"
 
 1455583163 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2OcclusionQuery.h
@@ -2684,7 +2686,7 @@
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2Uniform.h
 	"../../../../Leadwerks.h"
 
-1455583163 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2Shader.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2Shader.h
 	"../../../../Leadwerks.h"
 
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2Camera.h
@@ -2699,7 +2701,7 @@
 1455583151 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL2/OpenGL2Material.h
 	"../../../../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL4/OpenGL4GraphicsDriver.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL4/OpenGL4GraphicsDriver.h
 	"../OpenGL2/OpenGL2GraphicsDriver.h"
 	"../../../../Leadwerks.h"
 	"Classes/OpenGL4VertexArray.h"
@@ -2731,7 +2733,7 @@
 1455583153 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL4/Classes/OpenGL4Shader.h
 	"../../../../../Leadwerks.h"
 
-1462716981 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL4/Classes/OpenGL4Camera.h
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL4/Classes/OpenGL4Camera.h
 	"../../../../../Leadwerks.h"
 
 1455583156 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Graphics/OpenGL4/Classes/OpenGL4Buffer.h
@@ -2829,7 +2831,7 @@
 1455583152 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Physics/NewtonDynamics/Classes/NewtonDynamicsSimulation.h
 	"../NewtonDynamicsPhysicsDriver.h"
 
-1455583166 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Physics/NewtonDynamics/Classes/NewtonDynamicsBody.h
+1467583442 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Physics/NewtonDynamics/Classes/NewtonDynamicsBody.h
 	"../NewtonDynamicsPhysicsDriver.h"
 
 1455583170 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Drivers/Physics/NewtonDynamics/Classes/NewtonDynamicsShape.h
@@ -2976,7 +2978,7 @@
 	<CustomAlloc.h>
 	<CustomVehicleControllerJoint.h>
 
-1461509858 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.cpp
+1473661809 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Player.cpp
 	"Player.h"
 
 1452989093 /home/geldo/Documents/Leadwerks/Projects/RedRequest/Leadwerks/Include/Leadwerks.h
@@ -4433,9 +4435,8 @@
 1461428651 source:/media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/Misc/WorldObject.cpp
 	"WorldObject.h"
 
-1457315233 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/WorldObjects/Tools/MonkeyWrench.h
+1473661263 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Source/WorldObjects/Tools/MonkeyWrench.h
 	"Leadwerks.h"
-	<boost/lexical_cast.hpp>
 	"../../Scene.h"
 	"../../Misc/WorldObject.h"
 
@@ -6082,4 +6083,22 @@
 	<X11/Xatom.h>
 	"Event.h"
 	"OpenGL.h"
+
+1467583450 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Libraries/glslang/glslang/Public/ShaderLang.h
+	"../Include/ResourceLimits.h"
+	"../MachineIndependent/Versions.h"
+	<list>
+	<string>
+	<utility>
+
+1467583450 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Libraries/glslang/glslang/Include/ResourceLimits.h
+
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Libraries/glslang/glslang/MachineIndependent/Versions.h
+
+1467583438 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Libraries/glslang/StandAlone/ResourceLimits.h
+	<string>
+	"glslang/Include/ResourceLimits.h"
+
+1467583445 /media/geldo/GELDO/Arquivos/Projetos/RedRequest/Leadwerks/Include/Classes/Entities/Probe.h
+	"../../Leadwerks.h"
 

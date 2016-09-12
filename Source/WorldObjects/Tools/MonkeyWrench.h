@@ -1,7 +1,6 @@
 #ifndef MONKEYWRENCH_H
 #define MONKEYWRENCH_H
 #include "Leadwerks.h"
-#include <boost/lexical_cast.hpp>
 #include "../../Scene.h"
 #include "../../Misc/WorldObject.h"
 

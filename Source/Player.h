@@ -1,6 +1,5 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include <boost/lexical_cast.hpp>
 #include "Leadwerks.h"
 #include "Scene.h"
 #include "Misc/WorldObject.h"
@@ -73,6 +72,10 @@ class Player
         Leadwerks::Vec3*        _cameraRotation;
         float                   _cameraTopAngle = -45;
         float                   _cameraBottomAngle = 80;
+        float                   _screenWidthCenter = 0;
+        float                   _screenHeigthCenter = 0;
+        //Pickinfo
+        Leadwerks::Font*        _pickinfoFont;
         //Animation
         void _playAnimation(string animationName);
         void _loopAnimation();

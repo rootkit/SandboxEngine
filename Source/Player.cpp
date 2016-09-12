@@ -78,6 +78,8 @@ Player::Player(class Scene* scene)
     this->_cameraRotation = new Leadwerks::Vec3();
 
     ///Pick Info
+    std::string pickinfoFontPath = System::GetProperty("font","Fonts/arial.ttf");
+    this->_pickinfoFont = Leadwerks::Font::Load(pickinfoFontPath,14,Leadwerks::Font::Smooth);
     //this->_pickinfo = new Leadwerks::PickInfo();
     //Create a sphere to indicate where the pick hits
     this->_pickSphere = Leadwerks::Model::Sphere();
@@ -227,10 +229,13 @@ void Player::InputUpdate()
 
 void Player::DrawContext()
 {
+    this->_screenHeigthCenter = (this->_scene->window->GetHeight() / 2);
+    this->_screenWidthCenter = (this->_scene->window->GetWidth() / 2);
+
     this->_scene->context->SetBlendMode(Leadwerks::Blend::Alpha);
     this->_scene->context->DrawImage(this->_crosshair,
-                                    (this->_scene->window->GetWidth() / 2) - (this->_crosshair->GetWidth() / 2),
-                                    (this->_scene->window->GetHeight() / 2) - (this->_crosshair->GetHeight() / 2));
+                                    this->_screenWidthCenter - (this->_crosshair->GetWidth() / 2),
+                                    this->_screenHeigthCenter - (this->_crosshair->GetHeight() / 2));
 
     if(this->_pickinfo.entity != NULL){
 
@@ -238,7 +243,8 @@ void Player::DrawContext()
             WorldObject* _worldObject = dynamic_cast<WorldObject*>(this->_pickinfo.entity->GetChild(0));
 
             if(_worldObject != NULL){
-                //this->_scene->context->DrawText("PICK INFO: " + _worldObject->GetName(),0,200);
+                this->_scene->context->SetFont(this->_pickinfoFont);
+                this->_scene->context->DrawText("(E) " + _worldObject->GetName(),this->_screenWidthCenter + 40,this->_screenHeigthCenter - 40);
                 this->_interactingObject = _worldObject;
             }
             else{
